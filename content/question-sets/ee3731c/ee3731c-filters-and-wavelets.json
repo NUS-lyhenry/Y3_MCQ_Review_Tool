@@ -1,0 +1,163 @@
+{
+  "id": "ee3731c-filters-and-wavelets",
+  "courseCode": "EE3731C",
+  "courseName": "Signal Analytics",
+  "title": "FIR Filters, FFT Convolution and Wavelets",
+  "description": "Ten original questions on filter ideals, window design, linear phase, FFT convolution, STFT resolution, Haar DWT and translation invariance. Multiple-response scoring is for practice only: +1 per correct selection and -0.5 per incorrect selection, floored at zero.",
+  "tags": ["CA1", "filters", "wavelets"],
+  "updatedAt": "2026-09-04T16:00:00+08:00",
+  "questions": [
+    {
+      "id": "ee3731c-filter-lowpass-highpass",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Which statements distinguish ideal low-pass and high-pass filters?",
+      "options": [
+        { "id": "low-dc", "content": "An ideal low-pass filter passes frequencies near DC.", "points": 1 },
+        { "id": "high-suppresses-dc", "content": "An ideal high-pass filter suppresses frequencies near DC.", "points": 1 },
+        { "id": "cutoff", "content": "Both are described by passband and stopband regions separated by a cutoff in the ideal model.", "points": 1 },
+        { "id": "same-response", "content": "They have identical magnitude responses at every frequency.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Low-pass and high-pass filters select complementary low- and high-frequency regions. Their ideal responses change abruptly at a cutoff, though practical designs require a transition band.",
+      "source": "EE3731C Classical Signal 3, ideal filter review"
+    },
+    {
+      "id": "ee3731c-filter-ideal-impulse",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Why can an ideal brick-wall frequency response not be implemented exactly as a finite, causal FIR filter?",
+      "options": [
+        { "id": "infinite-impulse", "content": "Its inverse transform has an impulse response extending infinitely in time.", "points": 1 },
+        { "id": "two-sided", "content": "A zero-phase ideal response produces a two-sided impulse response.", "points": 1 },
+        { "id": "truncate", "content": "A practical FIR design must truncate or window an ideal response.", "points": 1 },
+        { "id": "finite-exact", "content": "A finite number of taps can reproduce an arbitrary discontinuous ideal response exactly.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "An abrupt frequency discontinuity corresponds to an infinite-duration sinc-like impulse response. Causal FIR design therefore delays and truncates or windows it, introducing transition width and ripple.",
+      "source": "EE3731C Classical Signal 3 Tutorial, ideal filter and window-design questions"
+    },
+    {
+      "id": "ee3731c-filter-window-tradeoff",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "In the window method for FIR design, which trade-offs are generally relevant?",
+      "options": [
+        { "id": "longer-narrower", "content": "A longer window can produce a narrower transition band.", "points": 1 },
+        { "id": "window-ripple", "content": "Window choice affects sidelobe level and passband or stopband ripple.", "points": 1 },
+        { "id": "abrupt-ringing", "content": "Abrupt rectangular truncation tends to produce stronger sidelobes than smoother windows.", "points": 1 },
+        { "id": "no-effect", "content": "Window length and shape have no effect on the realized frequency response.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Longer filters improve frequency resolution, while smoother windows reduce sidelobes at the cost of a broader mainlobe. The window therefore controls transition width and ripple together.",
+      "source": "EE3731C Classical Signal 3, common windows and filter design"
+    },
+    {
+      "id": "ee3731c-filter-kaiser-parameters",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "For a Kaiser-window FIR design, which qualitative roles are correct?",
+      "options": [
+        { "id": "beta-sidelobe", "content": "The Kaiser shape parameter controls the sidelobe-versus-mainlobe trade-off.", "points": 1 },
+        { "id": "length-transition", "content": "Filter length is strongly related to the required transition width.", "points": 1 },
+        { "id": "stricter-longer", "content": "Stricter attenuation or a narrower transition generally requires more taps.", "points": 1 },
+        { "id": "one-tap-all", "content": "One tap can meet any arbitrary magnitude specification if the shape parameter is large enough.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Kaiser design offers a tunable window shape, but demanding attenuation and narrow transitions still require sufficient filter order. The shape parameter alone cannot replace the required number of taps.",
+      "source": "EE3731C Classical Signal 3 Tutorial, Kaiser-window Questions 2-3"
+    },
+    {
+      "id": "ee3731c-filter-linear-phase-symmetry",
+      "revision": 1,
+      "type": "single",
+      "prompt": "Which property of a real FIR impulse response is used to obtain generalized linear phase?",
+      "options": [
+        { "id": "symmetry", "content": "The coefficients are symmetric or antisymmetric about their midpoint.", "points": 1 },
+        { "id": "random", "content": "The coefficients are independent random values.", "points": 0 },
+        { "id": "positive", "content": "Every coefficient is strictly positive.", "points": 0 },
+        { "id": "infinite", "content": "The impulse response has infinite duration.", "points": 0 }
+      ],
+      "maxPoints": 1,
+      "explanation": "Real FIR filters with midpoint symmetry or antisymmetry have generalized linear phase. The symmetry factors the response into a real amplitude term and a linear phase term.",
+      "source": "EE3731C Classical Signal 3, Type 1-4 FIR linear-phase systems"
+    },
+    {
+      "id": "ee3731c-filter-fft-padding",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Sequences have lengths $Lx$ and $Lh$. Which statements about FFT-based convolution are correct?",
+      "options": [
+        { "id": "linear-length", "content": "Their full linear convolution has length $Lx+Lh-1$.", "points": 1 },
+        { "id": "pad", "content": "Using a DFT length at least $Lx+Lh-1$ avoids time-domain aliasing.", "points": 1 },
+        { "id": "multiply", "content": "After padding, multiply the DFTs and take the inverse DFT.", "points": 1 },
+        { "id": "no-pad-same", "content": "Without sufficient padding, circular convolution is always identical to full linear convolution.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "DFT multiplication produces circular convolution. Padding to at least the linear-convolution length prevents wraparound overlap, so the inverse DFT equals the desired linear result.",
+      "source": "EE3731C Classical Signal 3, fast convolution slides 39-55 and Tutorial Q4"
+    },
+    {
+      "id": "ee3731c-filter-time-frequency-diagram",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "What distinctions between STFT and wavelet analysis are illustrated by the diagram?",
+      "image": {
+        "src": "/question-assets/ee3731c/ee3731c-filters-and-wavelets/time-frequency-tiling.png",
+        "alt": "Side-by-side time-frequency grids: equal STFT cells and wavelet cells that become wider at lower frequency."
+      },
+      "options": [
+        { "id": "stft-fixed", "content": "A fixed STFT window gives one time-frequency resolution across the plane.", "points": 1 },
+        { "id": "wavelet-multi", "content": "Wavelets use multiple scales and therefore multiresolution analysis.", "points": 1 },
+        { "id": "low-frequency-wide", "content": "Coarser time resolution can be paired with finer frequency resolution at low frequencies.", "points": 1 },
+        { "id": "no-tradeoff", "content": "Both methods provide arbitrarily fine time and frequency resolution simultaneously.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "A single STFT window fixes the cell shape. Wavelet scale changes provide short windows at high frequency and long windows at low frequency. Neither method escapes the fundamental time-frequency resolution trade-off.",
+      "source": "EE3731C Classical Signal 4, slides 4-17"
+    },
+    {
+      "id": "ee3731c-filter-haar-analysis",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "In one level of a Haar discrete wavelet transform, what do the two analysis branches represent?",
+      "options": [
+        { "id": "low-average", "content": "A low-pass branch captures local averages or coarse content.", "points": 1 },
+        { "id": "high-difference", "content": "A high-pass branch captures local differences or detail.", "points": 1 },
+        { "id": "downsample", "content": "Each filtered branch is downsampled in the critically sampled DWT.", "points": 1 },
+        { "id": "duplicate", "content": "Both branches contain identical coefficients for every input.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "The Haar low-pass filter forms averages and the high-pass filter forms differences. Downsampling retains the same total number of coefficients across the two branches for a critically sampled transform.",
+      "source": "EE3731C Classical Signal 4, slides 20-29"
+    },
+    {
+      "id": "ee3731c-filter-dwt-translation",
+      "revision": 1,
+      "type": "boolean",
+      "prompt": "A critically sampled DWT is generally not translation invariant because shifting the input can change which samples survive each downsampling step.",
+      "options": [
+        { "id": "true", "content": "True", "points": 1 },
+        { "id": "false", "content": "False", "points": 0 }
+      ],
+      "maxPoints": 1,
+      "explanation": "Downsampling ties the coefficients to a sampling phase. Even a one-sample input shift can produce a very different coefficient pattern, motivating stationary or cycle-spun alternatives.",
+      "source": "EE3731C Classical Signal 4, slides 39-40"
+    },
+    {
+      "id": "ee3731c-filter-spin-cycle",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Which steps belong to a spin-cycle wavelet procedure?",
+      "options": [
+        { "id": "shift", "content": "Circularly shift the input by several offsets.", "points": 1 },
+        { "id": "process", "content": "Apply the wavelet-domain operation to each shifted version.", "points": 1 },
+        { "id": "undo-average", "content": "Invert each shift after reconstruction and average the results.", "points": 1 },
+        { "id": "fewer-coeff", "content": "It always uses fewer coefficients and less computation than one ordinary DWT.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Cycle spinning repeats the transform over multiple circular shifts, undoes the shifts and averages. This reduces shift sensitivity but creates an overcomplete and more computationally expensive procedure.",
+      "source": "EE3731C Classical Signal 4, slides 41-44 and Tutorial 4 Question 1"
+    }
+  ]
+}

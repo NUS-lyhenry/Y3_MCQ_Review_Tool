@@ -1,0 +1,163 @@
+{
+  "id": "ee3431c-quiz-1-mock",
+  "courseCode": "EE3431C",
+  "courseName": "Microelectronics Materials and Devices",
+  "title": "Quiz 1 Mock",
+  "description": "Ten original multiple-response questions for the 9 September 2026, 10:00 Quiz 1. Recommended setup: Exam mode, all 10 questions, 30 minutes. Official scoring is represented directly: +1 per correct selection, -0.5 per incorrect selection, with each question floored at zero.",
+  "tags": ["Quiz 1", "mock", "30 minutes"],
+  "updatedAt": "2026-09-04T16:00:00+08:00",
+  "questions": [
+    {
+      "id": "ee3431c-mock-cubic-comparison",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "A monatomic cubic crystal has atoms at every corner and at the body centre, but none at the face centres. Select all correct deductions.",
+      "options": [
+        { "id": "bcc", "content": "The structure is BCC.", "points": 1 },
+        { "id": "two-atoms", "content": "The conventional cell contains two atoms.", "points": 1 },
+        { "id": "coordination-eight", "content": "Each atom has eight nearest neighbours.", "points": 1 },
+        { "id": "apf-point-seven-four", "content": "Its atomic packing factor is 0.74.", "points": -0.5 },
+        { "id": "face-diagonal-contact", "content": "Nearest neighbours touch along a face diagonal.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Corners plus one body-centred atom define BCC. Corner contributions total one atom, giving two per cell, and the coordination number is eight. BCC has APF about 0.68 and contact along the body diagonal.",
+      "source": "EE3431C Crystal structure part 1, slides 23 and 43"
+    },
+    {
+      "id": "ee3431c-mock-xrd-angle-change",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "An X-ray experiment keeps the wavelength and diffraction order fixed but probes a family of planes with a smaller spacing $d$. Which statements are correct if diffraction remains possible?",
+      "options": [
+        { "id": "larger-sine", "content": "The required value of $sin(theta)$ is larger.", "points": 1 },
+        { "id": "larger-angle", "content": "The Bragg angle is larger in the usual $0$ to $90$ degree range.", "points": 1 },
+        { "id": "may-be-impossible", "content": "If $d$ becomes too small, no real diffraction angle exists for that order.", "points": 1 },
+        { "id": "angle-zero", "content": "The Bragg angle must become zero.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "From $2d sin(theta)=n lambda$, decreasing $d$ requires a larger sine and hence a larger angle. Once $n lambda/(2d)>1$, that order cannot satisfy Bragg's condition.",
+      "source": "EE3431C Crystal structure part 2 XRD, slides 3-4"
+    },
+    {
+      "id": "ee3431c-mock-same-element-allotropes",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Graphite and diamond are both made of carbon. Which ideas help explain their very different properties?",
+      "options": [
+        { "id": "arrangement", "content": "Their atoms have different spatial arrangements and bonding networks.", "points": 1 },
+        { "id": "bands", "content": "Different interactions produce different electronic band structures.", "points": 1 },
+        { "id": "structure-property", "content": "Material properties depend on crystal structure as well as chemical composition.", "points": 1 },
+        { "id": "different-elements", "content": "They must contain different chemical elements.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Both allotropes contain carbon, but their bonding geometry and periodic structure differ. Those changes alter mechanical response and electronic bands, demonstrating that composition alone does not determine properties.",
+      "source": "EE3431C Crystal structure part 1, slides 13-15"
+    },
+    {
+      "id": "ee3431c-mock-band-conduction-scenario",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "A solid has a partly filled allowed band at the Fermi energy. What follows qualitatively?",
+      "options": [
+        { "id": "nearby-empty", "content": "Nearby empty states are available within the same band.", "points": 1 },
+        { "id": "field-redistribution", "content": "An electric field can redistribute electrons among nearby states.", "points": 1 },
+        { "id": "metal-like", "content": "Metal-like conduction is expected.", "points": 1 },
+        { "id": "large-gap-required", "content": "Current requires every electron to cross a large forbidden gap first.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Partial occupancy leaves accessible states close in energy, allowing a field to change electron velocities and create net current. This is a central band-theory explanation of metallic conduction.",
+      "source": "EE3431C Band Theory with gif 2, band occupancy and transport section"
+    },
+    {
+      "id": "ee3431c-mock-atomic-separation",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Imagine gradually reducing the separation between many identical atoms from very large distances to their equilibrium spacing. Which trends are expected?",
+      "options": [
+        { "id": "overlap-grows", "content": "Electron wavefunction overlap generally increases.", "points": 1 },
+        { "id": "levels-split", "content": "Degenerate atomic levels split into many distinct levels.", "points": 1 },
+        { "id": "bands-emerge", "content": "The closely spaced levels form allowed energy bands in a macroscopic crystal.", "points": 1 },
+        { "id": "interactions-vanish", "content": "Interatomic interactions vanish as the atoms approach.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Approaching atoms interact more strongly because their wavefunctions overlap. The interaction lifts degeneracy; with an enormous number of atoms, the split levels are so dense that they are treated as bands.",
+      "source": "EE3431C Band Theory with gif 2, atomic interaction and band formation sections"
+    },
+    {
+      "id": "ee3431c-mock-dielectric-fast-field",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "A dielectric is driven at a frequency too high for its permanent molecular dipoles to reorient, but low enough for electronic polarization. Which statements are correct?",
+      "options": [
+        { "id": "orientation-drops", "content": "Orientational polarization contributes little to the steady AC response.", "points": 1 },
+        { "id": "electronic-remains", "content": "Electronic polarization can still contribute.", "points": 1 },
+        { "id": "permittivity-lower", "content": "The real permittivity is lower than when both mechanisms can respond.", "points": 1 },
+        { "id": "all-polarization-zero", "content": "The total polarization must be exactly zero.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "The slow orientational mechanism cannot track the rapidly changing field, while the much faster electronic distortion can. Losing one contribution reduces the permittivity but does not force all polarization to vanish.",
+      "source": "EE3431C Dielectric w Piezo, frequency response section"
+    },
+    {
+      "id": "ee3431c-mock-loss-and-heating",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "A capacitor dielectric becomes noticeably warm under a high-frequency AC voltage. Which explanations are physically reasonable?",
+      "options": [
+        { "id": "phase-lag", "content": "Polarization lags the electric field.", "points": 1 },
+        { "id": "energy-dissipation", "content": "Part of the electrical energy is dissipated during each cycle.", "points": 1 },
+        { "id": "loss-tangent", "content": "A nonzero dielectric loss is present.", "points": 1 },
+        { "id": "ideal-lossless", "content": "The behaviour proves the material is an ideal lossless dielectric.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "A phase-lagged polarization response produces an out-of-phase current component and dissipates energy as heat. An ideal lossless dielectric would return all stored energy and would not heat by dielectric loss.",
+      "source": "EE3431C Dielectric w Piezo, dielectric loss section"
+    },
+    {
+      "id": "ee3431c-mock-transducer-choice",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "A designer wants one element that senses pressure electrically and can also produce a small mechanical displacement when voltage is applied. Which statements support choosing a piezoelectric material?",
+      "options": [
+        { "id": "direct-sensing", "content": "The direct piezoelectric effect supports pressure sensing.", "points": 1 },
+        { "id": "converse-actuation", "content": "The converse piezoelectric effect supports actuation.", "points": 1 },
+        { "id": "reversible-coupling", "content": "Piezoelectric coupling links mechanical and electrical variables in both directions.", "points": 1 },
+        { "id": "centrosymmetric-required", "content": "The material should be centrosymmetric to maximize the linear effect.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Stress-to-charge conversion enables sensing, and field-to-strain conversion enables actuation. Both arise from piezoelectric coupling in a suitable non-centrosymmetric material.",
+      "source": "EE3431C Dielectric w Piezo, piezoelectric applications section"
+    },
+    {
+      "id": "ee3431c-mock-ferroelectric-memory",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Why can a ferroelectric polarization state represent stored information?",
+      "options": [
+        { "id": "two-states", "content": "Opposite remanent polarization states can encode two logical values.", "points": 1 },
+        { "id": "switching-field", "content": "An applied field can switch between the states.", "points": 1 },
+        { "id": "hysteresis-retention", "content": "Hysteresis allows polarization to remain after the applied field is removed.", "points": 1 },
+        { "id": "no-spontaneous", "content": "Ferroelectrics have no spontaneous polarization at any temperature.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Below the relevant transition temperature, a ferroelectric can retain either of two switchable polarization directions. Remanence and coercive-field switching make those states useful for nonvolatile information storage.",
+      "source": "EE3431C Dielectric w Piezo, ferroelectric hysteresis and applications section"
+    },
+    {
+      "id": "ee3431c-mock-cross-topic-selection",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Select every scientifically correct statement across the Quiz 1 scope.",
+      "options": [
+        { "id": "fcc-close-packed", "content": "FCC is a close-packed structure with coordination number 12.", "points": 1 },
+        { "id": "full-band-cancel", "content": "A completely filled band normally gives no net current contribution.", "points": 1 },
+        { "id": "ferro-switch", "content": "Ferroelectric polarization can be switched by an electric field.", "points": 1 },
+        { "id": "amorphous-long-range", "content": "An amorphous solid has perfect long-range periodic order.", "points": -0.5 },
+        { "id": "bragg-unrelated", "content": "Bragg diffraction is unrelated to the spacing of lattice planes.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "FCC is close-packed, a full band has cancelling occupied states, and ferroelectric polarization is field-switchable. Amorphous solids lack long-range periodic order, while Bragg diffraction depends directly on plane spacing.",
+      "source": "EE3431C Crystal structure part 1; Band Theory with gif 2; Dielectric w Piezo"
+    }
+  ]
+}

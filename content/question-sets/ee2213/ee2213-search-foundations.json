@@ -1,0 +1,161 @@
+{
+  "id": "ee2213-search-foundations",
+  "courseCode": "EE2213",
+  "courseName": "Introduction to Artificial Intelligence",
+  "title": "Search Foundations",
+  "description": "Ten original questions on problem formulation, nodes, frontiers, reached sets, BFS, depth-limited search and iterative deepening. Multiple-response scoring is for practice only: +1 per correct selection and -0.5 per incorrect selection, floored at zero.",
+  "tags": ["Quiz 1", "search", "Assignment 1"],
+  "updatedAt": "2026-09-04T16:00:00+08:00",
+  "questions": [
+    {
+      "id": "ee2213-foundations-problem-components",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Which elements belong in a standard search-problem formulation?",
+      "options": [
+        { "id": "initial-state", "content": "An initial state", "points": 1 },
+        { "id": "actions-transition", "content": "Available actions and a transition model", "points": 1 },
+        { "id": "goal-test", "content": "A goal test", "points": 1 },
+        { "id": "path-cost", "content": "A path-cost function when solution cost matters", "points": 1 },
+        { "id": "fixed-solution", "content": "A hard-coded solution path", "points": -0.5 }
+      ],
+      "maxPoints": 4,
+      "explanation": "A problem states where search begins, how states change, how success is recognized and how paths are evaluated. The solution is discovered by the algorithm and must not be embedded in the formulation.",
+      "source": "EE2213 L02 Search Basic, problem formulation section"
+    },
+    {
+      "id": "ee2213-foundations-node-versus-state",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Why can two different search nodes contain the same state?",
+      "options": [
+        { "id": "different-paths", "content": "The state may be reached through different paths.", "points": 1 },
+        { "id": "different-costs", "content": "The nodes may have different path costs.", "points": 1 },
+        { "id": "different-parents", "content": "The nodes may have different parent links and depths.", "points": 1 },
+        { "id": "state-stores-history", "content": "A state necessarily stores the complete path history itself.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "A state describes a world configuration, whereas a node records one path to that state, including parent, action, depth and cost. Redundant paths can therefore create distinct nodes with the same state.",
+      "source": "EE2213 L02 Search Basic, states and nodes section"
+    },
+    {
+      "id": "ee2213-foundations-bfs-properties",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "For a finite-branching graph with unit step costs, which statements about breadth-first search are correct?",
+      "options": [
+        { "id": "fifo", "content": "It uses a FIFO frontier.", "points": 1 },
+        { "id": "shallowest", "content": "It expands nodes in nondecreasing depth.", "points": 1 },
+        { "id": "complete", "content": "It is complete when a solution exists at finite depth.", "points": 1 },
+        { "id": "optimal-unit", "content": "It returns a minimum-step solution under unit costs.", "points": 1 },
+        { "id": "low-memory", "content": "Its memory use is always linear in solution depth.", "points": -0.5 }
+      ],
+      "maxPoints": 4,
+      "explanation": "FIFO ordering produces layer-by-layer expansion, giving completeness and shortest path in number of steps under unit costs. BFS may store an entire frontier layer, so its memory can grow exponentially with depth.",
+      "source": "EE2213 L03 Search, breadth-first search section"
+    },
+    {
+      "id": "ee2213-foundations-goal-test-on-pop",
+      "revision": 1,
+      "type": "single",
+      "prompt": "Under the Assignment 1 measurement convention, when is the goal test applied?",
+      "options": [
+        { "id": "on-pop", "content": "When a node is removed from the frontier for processing", "points": 1 },
+        { "id": "on-generation", "content": "Immediately when a successor is generated", "points": 0 },
+        { "id": "after-expand", "content": "Only after the goal node has been expanded", "points": 0 },
+        { "id": "after-search", "content": "Only after the frontier becomes empty", "points": 0 }
+      ],
+      "maxPoints": 1,
+      "explanation": "The assignment explicitly standardizes goal testing at removal from the frontier. This makes traces and popped-node counts comparable across implementations.",
+      "source": "EE2213 Assignment 1, Search implementation and measurement conventions"
+    },
+    {
+      "id": "ee2213-foundations-reached-purpose",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "What benefits can a reached structure provide in graph search?",
+      "options": [
+        { "id": "avoid-repeat", "content": "It can prevent repeatedly expanding the same state through redundant paths.", "points": 1 },
+        { "id": "record-best", "content": "For cost-based search, it can help track the cheapest known path to a state.", "points": 1 },
+        { "id": "terminate-cycles", "content": "It can keep cycles from generating an endless sequence of repeated states.", "points": 1 },
+        { "id": "guarantee-any-heuristic", "content": "It makes every heuristic search optimal regardless of frontier ordering.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Reached-state bookkeeping controls repetition and may store the best known node for each state. It does not repair an unsuitable priority rule or automatically make a heuristic algorithm optimal.",
+      "source": "EE2213 L03 Search, graph search and repeated states section"
+    },
+    {
+      "id": "ee2213-foundations-dls-outcomes",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "A correct depth-limited search must distinguish which outcomes?",
+      "options": [
+        { "id": "solution", "content": "SOLUTION when a goal node is found", "points": 1 },
+        { "id": "cutoff", "content": "CUT-OFF when at least one branch is stopped only by the depth limit", "points": 1 },
+        { "id": "failure", "content": "FAILURE when the finite search space is exhausted without a cutoff", "points": 1 },
+        { "id": "always-cutoff", "content": "CUT-OFF whenever the goal is absent, even if no node reaches the limit", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "CUT-OFF means the current limit may have hidden a deeper solution, whereas FAILURE means no solution exists in the explored finite space. IDS relies on this distinction to know whether increasing the limit can help.",
+      "source": "EE2213 Assignment 1, Question 1 DLS requirements"
+    },
+    {
+      "id": "ee2213-foundations-ids-iterations",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Which statements describe iterative deepening search (IDS) correctly?",
+      "options": [
+        { "id": "limits", "content": "It runs depth-limited search with limits $0,1,2,...$.", "points": 1 },
+        { "id": "fresh-iteration", "content": "Each iteration starts with fresh reached or path bookkeeping.", "points": 1 },
+        { "id": "bfs-depth", "content": "With unit costs, it finds a shallowest solution like BFS.", "points": 1 },
+        { "id": "single-reached", "content": "It should permanently mark every state reached in an earlier, shallower iteration.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "IDS systematically increases the depth bound. Reusing a global reached set would wrongly block states that must be revisited with a larger remaining depth allowance. Its repeated shallow work is offset by depth-first memory use.",
+      "source": "EE2213 L04 Search Uninformed and Assignment 1 Question 1"
+    },
+    {
+      "id": "ee2213-foundations-path-cycle-checking",
+      "revision": 1,
+      "type": "single",
+      "prompt": "In one DLS iteration, what does path-based cycle checking forbid?",
+      "options": [
+        { "id": "ancestor-state", "content": "Generating a successor whose state already appears on the current node's ancestor path", "points": 1 },
+        { "id": "other-branch", "content": "Reaching a state that appeared anywhere in a different completed branch", "points": 0 },
+        { "id": "deeper-state", "content": "Generating any node deeper than its parent", "points": 0 },
+        { "id": "goal", "content": "Generating the goal state", "points": 0 }
+      ],
+      "maxPoints": 1,
+      "explanation": "Path checking prevents a branch from looping back to one of its own ancestors while still allowing the same state to be explored through a different path. That is less restrictive than a global reached set.",
+      "source": "EE2213 Assignment 1, Question 1 path-based cycle checking"
+    },
+    {
+      "id": "ee2213-foundations-tree-graph-search",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Compared with tree search, graph search usually adds which responsibilities?",
+      "options": [
+        { "id": "duplicate-detection", "content": "Detecting repeated states", "points": 1 },
+        { "id": "cycle-control", "content": "Controlling cycles in the state graph", "points": 1 },
+        { "id": "replacement", "content": "Possibly replacing a worse known path with a cheaper one", "points": 1 },
+        { "id": "remove-frontier", "content": "Eliminating the need for a frontier", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Graph search recognizes that different paths may reach the same state. It therefore tracks repetition, controls cycles and, in cost-based variants, may update a state's best path. A frontier is still required to choose what to process next.",
+      "source": "EE2213 L03 Search, tree search versus graph search"
+    },
+    {
+      "id": "ee2213-foundations-frontier-measurement",
+      "revision": 1,
+      "type": "boolean",
+      "prompt": "Under the Assignment 1 convention, maximum frontier size is measured after all insertions or updates caused by an expansion and includes the initial frontier.",
+      "options": [
+        { "id": "true", "content": "True", "points": 1 },
+        { "id": "false", "content": "False", "points": 0 }
+      ],
+      "maxPoints": 1,
+      "explanation": "This is the specified measurement point. Measuring before inserting successors or excluding the initial frontier would make results inconsistent with the assignment's expected traces.",
+      "source": "EE2213 Assignment 1, Search implementation and measurement conventions"
+    }
+  ]
+}

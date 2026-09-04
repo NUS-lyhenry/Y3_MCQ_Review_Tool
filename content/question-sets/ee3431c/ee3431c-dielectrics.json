@@ -1,0 +1,129 @@
+{
+  "id": "ee3431c-dielectrics",
+  "courseCode": "EE3431C",
+  "courseName": "Microelectronics Materials and Devices",
+  "title": "Dielectrics, Piezoelectrics and Ferroelectrics",
+  "description": "Eight qualitative questions covering polarization, frequency response, dielectric loss, breakdown, piezoelectricity and ferroelectricity from the complete Dielectric w Piezo lecture. Multiple-response items use +1 per correct selection and -0.5 per incorrect selection, floored at zero.",
+  "tags": ["Quiz 1", "dielectrics", "qualitative"],
+  "updatedAt": "2026-09-04T16:00:00+08:00",
+  "questions": [
+    {
+      "id": "ee3431c-dielectric-polarization-basics",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "What happens when an ideal dielectric is polarized by an applied electric field?",
+      "options": [
+        { "id": "bound-charge-shift", "content": "Positive and negative bound charges shift slightly relative to one another.", "points": 1 },
+        { "id": "dipole-moment", "content": "A net dipole moment per unit volume can develop.", "points": 1 },
+        { "id": "surface-charge", "content": "Bound polarization charge can appear at surfaces.", "points": 1 },
+        { "id": "free-current-required", "content": "A steady flow of free carriers through the bulk is required for polarization.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Polarization is the displacement or alignment of bound charge, producing electric dipoles and possibly bound surface charge. It does not require the continuous free-carrier transport that defines conduction current.",
+      "source": "EE3431C Dielectric w Piezo, slides 3-6"
+    },
+    {
+      "id": "ee3431c-dielectric-mechanisms",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Match the qualitative polarization mechanisms to physical motion. Which statements are correct?",
+      "options": [
+        { "id": "electronic-cloud", "content": "Electronic polarization displaces an electron cloud relative to its nucleus.", "points": 1 },
+        { "id": "ionic-sublattices", "content": "Ionic polarization shifts positive and negative ion sublattices relative to each other.", "points": 1 },
+        { "id": "orientational-dipoles", "content": "Orientational polarization aligns permanent molecular dipoles.", "points": 1 },
+        { "id": "electronic-needs-dipoles", "content": "Electronic polarization occurs only in molecules that already have permanent dipoles.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Electronic polarization can occur in every atom because the electron cloud can distort. Ionic polarization involves relative ion displacement, while orientational polarization requires permanent dipoles that rotate toward the field.",
+      "source": "EE3431C Dielectric w Piezo, polarization mechanisms section"
+    },
+    {
+      "id": "ee3431c-dielectric-frequency-response",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "As the frequency of an alternating electric field increases, which qualitative trends are expected in a dielectric?",
+      "options": [
+        { "id": "slow-dropout", "content": "Slower polarization mechanisms stop following the field first.", "points": 1 },
+        { "id": "permittivity-steps", "content": "The real permittivity can decrease in stages as mechanisms drop out.", "points": 1 },
+        { "id": "loss-near-relaxation", "content": "Dielectric loss can peak near a mechanism's relaxation frequency.", "points": 1 },
+        { "id": "all-stronger", "content": "Every mechanism contributes more strongly without limit as frequency rises.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "A polarization mechanism contributes only while it can respond on the field's timescale. Slow mechanisms such as dipole rotation drop out before fast electronic polarization, causing dispersion and often a loss peak near relaxation.",
+      "source": "EE3431C Dielectric w Piezo, frequency response and relaxation section"
+    },
+    {
+      "id": "ee3431c-dielectric-loss-origin",
+      "revision": 1,
+      "type": "single",
+      "prompt": "What is the most direct physical meaning of dielectric loss in an AC field?",
+      "options": [
+        { "id": "lag-and-heat", "content": "Polarization lags the field, so some electrical energy is dissipated as heat.", "points": 1 },
+        { "id": "perfect-storage", "content": "All supplied energy is stored and returned with no phase lag.", "points": 0 },
+        { "id": "zero-field", "content": "The internal electric field is exactly zero at all times.", "points": 0 },
+        { "id": "infinite-gap", "content": "The electronic band gap has become infinite.", "points": 0 }
+      ],
+      "maxPoints": 1,
+      "explanation": "Real polarization does not respond instantaneously. The lag between applied field and polarization produces an out-of-phase current component and converts part of the cycle's energy into heat.",
+      "source": "EE3431C Dielectric w Piezo, dielectric loss section"
+    },
+    {
+      "id": "ee3431c-dielectric-breakdown",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Which statements about dielectric breakdown are correct?",
+      "options": [
+        { "id": "critical-field", "content": "Breakdown occurs when the electric field exceeds a material- and condition-dependent strength.", "points": 1 },
+        { "id": "thermal-feedback", "content": "Local heating can increase conduction and create destructive positive feedback.", "points": 1 },
+        { "id": "defects-aging", "content": "Defects, moisture and electrical aging can reduce practical breakdown strength.", "points": 1 },
+        { "id": "always-reversible", "content": "Breakdown is always perfectly reversible once the voltage is removed.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Breakdown strength depends on the material, geometry, temperature, defects and history. Thermal runaway and field-enhanced carrier processes can cause irreversible damage, so removal of voltage does not guarantee recovery.",
+      "source": "EE3431C Dielectric w Piezo, dielectric breakdown and aging section"
+    },
+    {
+      "id": "ee3431c-dielectric-piezoelectric-effects",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Which statements distinguish the direct and converse piezoelectric effects?",
+      "options": [
+        { "id": "direct-stress-charge", "content": "The direct effect converts applied mechanical stress into electrical charge.", "points": 1 },
+        { "id": "converse-field-strain", "content": "The converse effect converts an applied electric field into mechanical strain.", "points": 1 },
+        { "id": "sensor-actuator", "content": "The two effects support sensor and actuator applications, respectively.", "points": 1 },
+        { "id": "all-centrosymmetric", "content": "Every centrosymmetric crystal must be piezoelectric.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Mechanical stress can produce charge in the direct effect, while an electric field can produce deformation in the converse effect. Piezoelectricity requires suitable non-centrosymmetric structure; centrosymmetry prevents a linear piezoelectric response.",
+      "source": "EE3431C Dielectric w Piezo, piezoelectricity section"
+    },
+    {
+      "id": "ee3431c-dielectric-ferroelectric-properties",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Which properties are characteristic of a ferroelectric material below its Curie temperature?",
+      "options": [
+        { "id": "spontaneous-polarization", "content": "It can possess spontaneous polarization without an applied field.", "points": 1 },
+        { "id": "switchable", "content": "An applied field can switch the polarization direction.", "points": 1 },
+        { "id": "hysteresis", "content": "A polarization-electric-field hysteresis loop can occur.", "points": 1 },
+        { "id": "never-piezo", "content": "A ferroelectric can never show piezoelectric behaviour.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Ferroelectrics have switchable spontaneous polarization and therefore exhibit hysteresis. Their polar crystal phase is also piezoelectric; ferroelectricity is a more restrictive property, not one that excludes piezoelectricity.",
+      "source": "EE3431C Dielectric w Piezo, ferroelectricity and hysteresis section"
+    },
+    {
+      "id": "ee3431c-dielectric-capacitor-role",
+      "revision": 1,
+      "type": "boolean",
+      "prompt": "Inserting a linear dielectric between capacitor plates can increase capacitance because polarization reduces the effective internal field for a given amount of free plate charge.",
+      "options": [
+        { "id": "true", "content": "True", "points": 1 },
+        { "id": "false", "content": "False", "points": 0 }
+      ],
+      "maxPoints": 1,
+      "explanation": "Bound polarization charges oppose part of the field from the free plate charges. Consequently, a larger free charge is required to reach the same voltage, which means the capacitance is increased by the dielectric permittivity.",
+      "source": "EE3431C Dielectric w Piezo, capacitive behaviour section"
+    }
+  ]
+}

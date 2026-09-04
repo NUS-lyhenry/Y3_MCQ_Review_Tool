@@ -1,0 +1,161 @@
+{
+  "id": "ee2213-quiz-1-mock",
+  "courseCode": "EE2213",
+  "courseName": "Introduction to Artificial Intelligence",
+  "title": "In-Class Quiz 1 Mock",
+  "description": "Ten original multiple-response questions for the 17 September 2026 in-class quiz held in the 09:00-11:00 LT7 lecture block. The scope uses current LEC0-LEC7 and Assignment 1, with conceptual tracing, debugging and short code comprehension. Practice scoring only: +1 per correct selection and -0.5 per incorrect selection, floored at zero.",
+  "tags": ["Quiz 1", "mock", "multiple response"],
+  "updatedAt": "2026-09-04T16:00:00+08:00",
+  "questions": [
+    {
+      "id": "ee2213-mock-bfs-frontier-trace",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "BFS starts at S. Successors are ordered as `S: [A, B]`, `A: [C]`, `B: [D]`; C is the goal. The goal test occurs on pop. Select all correct statements.",
+      "options": [
+        { "id": "pop-order", "content": "The pop order through the goal is S, A, B, C.", "points": 1 },
+        { "id": "goal-depth", "content": "The returned goal node has depth 2.", "points": 1 },
+        { "id": "parent", "content": "The returned path is S-A-C.", "points": 1 },
+        { "id": "c-before-b", "content": "C is popped before B because C is the goal.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "FIFO order processes S, then both depth-1 nodes A and B, then depth-2 node C. Goal status does not move C ahead of nodes already in the frontier. Parent links reconstruct S-A-C at depth 2.",
+      "source": "EE2213 L03 Search, BFS tracing; Assignment 1 goal-test convention"
+    },
+    {
+      "id": "ee2213-mock-dls-limit-code",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Consider this DLS fragment:\n\n```python\nnode = frontier.pop()\nif node.depth == limit:\n    return CUTOFF\nif goal_test(node.state):\n    return node\n```\n\nWhat is wrong with it under the assignment specification?",
+      "options": [
+        { "id": "goal-order", "content": "A goal exactly at the depth limit is returned as CUT-OFF instead of SOLUTION.", "points": 1 },
+        { "id": "goal-first", "content": "The goal test must occur before deciding not to expand a limit-depth node.", "points": 1 },
+        { "id": "global-return", "content": "Returning CUT-OFF immediately can also ignore unexplored branches that might contain a solution.", "points": 1 },
+        { "id": "expand-limit", "content": "The correct fix is to expand every node at the depth limit.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Nodes at the limit are still popped and goal-tested but are not expanded. A cutoff should be remembered as one branch outcome while other frontier or recursive branches are considered; it should not automatically terminate the whole search.",
+      "source": "EE2213 Assignment 1, Question 1 DLS behaviour"
+    },
+    {
+      "id": "ee2213-mock-ids-shared-reached-bug",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "An IDS implementation creates `reached = set()` once, outside the loop over depth limits, and never clears it. Which consequences are possible?",
+      "options": [
+        { "id": "blocked-revisit", "content": "States reached at a shallow limit may be blocked in later iterations.", "points": 1 },
+        { "id": "miss-deeper", "content": "A valid deeper solution can be missed.", "points": 1 },
+        { "id": "fix-fresh", "content": "The search bookkeeping should be reset for each depth limit.", "points": 1 },
+        { "id": "always-faster-correct", "content": "The shared set is always a correct optimization because a state never needs revisiting.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "A state reached at limit 1 may need to be revisited at limit 2 with permission to expand one level farther. Carrying reached across iterations removes that opportunity and breaks IDS completeness.",
+      "source": "EE2213 Assignment 1, IDS reached-set warning"
+    },
+    {
+      "id": "ee2213-mock-ucs-update-code",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "A UCS implementation uses `best[state]` for the cheapest node found. It generates a child for state X with cost 7 while `best[X].path_cost` is 11. Select the required actions.",
+      "options": [
+        { "id": "replace-best", "content": "Replace `best[X]` with the cost-7 child.", "points": 1 },
+        { "id": "push-new", "content": "Place an entry for the cost-7 child in the priority frontier.", "points": 1 },
+        { "id": "preserve-child", "content": "Keep the child's parent and action fields for path reconstruction.", "points": 1 },
+        { "id": "keep-eleven", "content": "Keep the cost-11 node because it was discovered first.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "UCS is optimal only if cheaper paths can replace more expensive waiting paths. A lazy heap may keep the stale entry, but `best` must identify the cost-7 node so the stale cost-11 entry is discarded later.",
+      "source": "EE2213 Assignment 1, UCS priority-frontier update convention"
+    },
+    {
+      "id": "ee2213-mock-heuristic-check",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "The true cheapest remaining costs are $h*(A)=5$, $h*(B)=3$, and $h*(G)=0$. Which heuristic assignments are admissible for these states?",
+      "options": [
+        { "id": "h-one", "content": "$h(A)=4, h(B)=3, h(G)=0$", "points": 1 },
+        { "id": "h-zero", "content": "$h(A)=0, h(B)=0, h(G)=0$", "points": 1 },
+        { "id": "h-negative-question", "content": "$h(A)=5, h(B)=2, h(G)=0$", "points": 1 },
+        { "id": "h-over", "content": "$h(A)=6, h(B)=1, h(G)=0$", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "An admissible heuristic does not exceed the true remaining cost at any state. The first three assignments satisfy that condition. The last overestimates at A because 6 is greater than 5.",
+      "source": "EE2213 L05 Search Heuristics, admissibility examples"
+    },
+    {
+      "id": "ee2213-mock-astar-priority-comparison",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "An A* frontier contains P with $g=6,h=4$, Q with $g=7,h=1$, and R with $g=3,h=6$. FIFO insertion order is P, Q, R. Which statements are correct?",
+      "options": [
+        { "id": "values", "content": "Their $f$ values are 10, 8 and 9 respectively.", "points": 1 },
+        { "id": "q-next", "content": "Q is popped next.", "points": 1 },
+        { "id": "r-after", "content": "If no better nodes are inserted, R is considered before P.", "points": 1 },
+        { "id": "p-fifo", "content": "P is popped first solely because it was inserted first.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "A* sorts by $f=g+h$, giving Q=8, R=9 and P=10. FIFO affects only equal priorities, so it does not override these different $f$ values.",
+      "source": "EE2213 L05 Search Heuristics, A* priority and Assignment 1 tie-breaking"
+    },
+    {
+      "id": "ee2213-mock-gradient-numeric-step",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "For $f(x)=(x-3)^2$, gradient descent starts at $x=1$ with $alpha=0.25$. Select all correct statements about the first update.",
+      "options": [
+        { "id": "gradient-minus-four", "content": "The gradient at $x=1$ is $-4$.", "points": 1 },
+        { "id": "step-to-two", "content": "The next value is $x=2$.", "points": 1 },
+        { "id": "objective-decreases", "content": "The objective decreases from 4 to 1.", "points": 1 },
+        { "id": "step-left", "content": "The update moves farther left, away from the minimum at 3.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "$f'(x)=2(x-3)$, so $f'(1)=-4$. The update is $1-0.25(-4)=2$. The objective falls from $(1-3)^2=4$ to $(2-3)^2=1$.",
+      "source": "EE2213 L06 Gradient Descent, update calculation"
+    },
+    {
+      "id": "ee2213-mock-gradient-debug-sign",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "A student writes `x = x + alpha * gradient(x)` while trying to minimize a function. Which observations are correct?",
+      "options": [
+        { "id": "ascent", "content": "With a positive learning rate, this is a gradient-ascent step.", "points": 1 },
+        { "id": "sign-fix", "content": "The usual minimization fix is to subtract the gradient.", "points": 1 },
+        { "id": "may-increase", "content": "For a small step on a smooth function, the objective will generally increase rather than decrease.", "points": 1 },
+        { "id": "same-method", "content": "Addition and subtraction are equivalent for every gradient.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "The gradient points uphill. Adding a positive multiple follows that direction, while minimizing gradient descent uses the negative direction. The sign therefore changes the purpose of the method.",
+      "source": "EE2213 L06 Gradient Descent, descent direction"
+    },
+    {
+      "id": "ee2213-mock-sa-probability-comparison",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Two worse simulated-annealing proposals have objective increases 1 and 4 at the same positive temperature. Which statements are correct?",
+      "options": [
+        { "id": "smaller-more-likely", "content": "The increase of 1 is more likely to be accepted.", "points": 1 },
+        { "id": "both-possible", "content": "Both can have nonzero acceptance probability.", "points": 1 },
+        { "id": "cooling-reduces", "content": "Lowering the temperature reduces both acceptance probabilities.", "points": 1 },
+        { "id": "larger-more-likely", "content": "The increase of 4 is more likely because it explores farther.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "The probability is $exp(-Delta/T)$. At fixed $T$, it decreases as deterioration $Delta$ grows. At fixed positive $Delta$, it also decreases as the system cools.",
+      "source": "EE2213 L07 Simulated Annealing, acceptance probability"
+    },
+    {
+      "id": "ee2213-mock-sa-best-state-code",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Consider this minimization update after a proposal has been accepted:\n\n```python\ncurrent = proposal\nif value(current) < best_value:\n    best = current\n    best_value = value(current)\n```\n\nWhich statements are correct?",
+      "options": [
+        { "id": "best-only-improves", "content": "The stored `best_value` can only improve or stay unchanged.", "points": 1 },
+        { "id": "current-may-worse", "content": "`current` may still be worse than the previous current state because annealing can accept a worse move.", "points": 1 },
+        { "id": "return-best", "content": "Returning `best` preserves the best solution encountered even if the final current state is worse.", "points": 1 },
+        { "id": "same-variable", "content": "Tracking `best` separately is unnecessary because `current` is always the best state seen.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "The conditional update changes `best` only when the accepted current state improves the record. Simulated annealing intentionally permits temporary deterioration, so current and best-so-far serve different purposes.",
+      "source": "EE2213 Assignment 1, simulated annealing best-so-far tracking"
+    }
+  ]
+}

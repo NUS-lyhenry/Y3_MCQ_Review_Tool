@@ -1,0 +1,165 @@
+{
+  "id": "ee3731c-lti-convolution",
+  "courseCode": "EE3731C",
+  "courseName": "Signal Analytics",
+  "title": "Discrete-Time Systems and Convolution",
+  "description": "Ten original questions on discrete signals, system properties, impulse responses, LTI systems and convolution. Multiple-response scoring is for practice only: +1 per correct selection and -0.5 per incorrect selection, floored at zero.",
+  "tags": ["CA1", "LTI", "convolution"],
+  "updatedAt": "2026-09-04T16:00:00+08:00",
+  "questions": [
+    {
+      "id": "ee3731c-lti-discrete-signal",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Which statements correctly describe a discrete-time signal $x[n]$?",
+      "options": [
+        { "id": "integer-index", "content": "Its independent index $n$ takes integer values.", "points": 1 },
+        { "id": "amplitude-continuous", "content": "Its amplitudes may still be real or complex rather than quantized.", "points": 1 },
+        { "id": "sequence", "content": "It can be represented as an ordered sequence of samples.", "points": 1 },
+        { "id": "must-periodic", "content": "Every discrete-time signal must be periodic.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Discrete time refers to the integer-valued index, not necessarily to quantized amplitudes. A sequence may be periodic, aperiodic, finite or infinite in duration.",
+      "source": "EE3731C Classical Signal 1, discrete-time signals section"
+    },
+    {
+      "id": "ee3731c-lti-system-properties",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Which are properties commonly used to classify a discrete-time system?",
+      "options": [
+        { "id": "linearity", "content": "Linearity", "points": 1 },
+        { "id": "time-invariance", "content": "Time invariance", "points": 1 },
+        { "id": "causality", "content": "Causality", "points": 1 },
+        { "id": "stability", "content": "BIBO stability", "points": 1 },
+        { "id": "font", "content": "The font used to write $x[n]$", "points": -0.5 }
+      ],
+      "maxPoints": 4,
+      "explanation": "Linearity, time invariance, causality, memory and stability describe how a system maps inputs to outputs. Notational appearance has no effect on the mathematical system.",
+      "source": "EE3731C Classical Signal 1 and Classical Signal 1 Tutorial Q1"
+    },
+    {
+      "id": "ee3731c-lti-multiplier-system",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Consider $y[n]=g[n]x[n]$ for a fixed sequence $g[n]$. Which statements are correct?",
+      "options": [
+        { "id": "linear", "content": "The system is linear.", "points": 1 },
+        { "id": "memoryless", "content": "The system is memoryless.", "points": 1 },
+        { "id": "stable-if-bounded", "content": "It is BIBO stable if $g[n]$ is bounded.", "points": 1 },
+        { "id": "always-ti", "content": "It is time invariant for every possible $g[n]$.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Multiplication by a fixed coefficient sequence is linear and depends only on the current input sample. Bounded $g[n]$ maps bounded inputs to bounded outputs. The system is time invariant only when shifting the input does not change the multiplier pattern, such as constant $g$.",
+      "source": "EE3731C Classical Signal 1 Tutorial, Question 1(a)"
+    },
+    {
+      "id": "ee3731c-lti-delay-system",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "For a positive integer $n0$, consider the delay system $y[n]=x[n-n0]$. Which properties does it have?",
+      "options": [
+        { "id": "linear", "content": "Linear", "points": 1 },
+        { "id": "time-invariant", "content": "Time invariant", "points": 1 },
+        { "id": "causal", "content": "Causal", "points": 1 },
+        { "id": "stable", "content": "BIBO stable", "points": 1 },
+        { "id": "memoryless", "content": "Memoryless", "points": -0.5 }
+      ],
+      "maxPoints": 4,
+      "explanation": "A pure positive delay preserves superposition and commutes with time shifts. The output uses a past input, so it is causal, and it preserves boundedness. It has memory because the output at $n$ depends on $x[n-n0]$, not $x[n]$.",
+      "source": "EE3731C Classical Signal 1 Tutorial, Question 1(b)"
+    },
+    {
+      "id": "ee3731c-lti-impulse-response",
+      "revision": 1,
+      "type": "single",
+      "prompt": "For an LTI system with impulse response $h[n]$, how is the output for input $x[n]$ computed?",
+      "options": [
+        { "id": "convolution", "content": "$y[n]=x[n]*h[n]$", "points": 1 },
+        { "id": "addition", "content": "$y[n]=x[n]+h[n]$", "points": 0 },
+        { "id": "sample-product", "content": "$y[n]=x[n]h[n]$ for every LTI system", "points": 0 },
+        { "id": "derivative", "content": "$y[n]$ is the derivative of $h[n]$", "points": 0 }
+      ],
+      "maxPoints": 1,
+      "explanation": "Any input can be expressed as a sum of shifted impulses. Linearity and time invariance then make the output the weighted sum of shifted impulse responses, which is discrete convolution.",
+      "source": "EE3731C Classical Signal 1, LTI impulse response and convolution"
+    },
+    {
+      "id": "ee3731c-lti-convolution-properties",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Which algebraic properties hold for discrete-time convolution?",
+      "options": [
+        { "id": "commutative", "content": "$x*h=h*x$", "points": 1 },
+        { "id": "associative", "content": "$(x*h1)*h2=x*(h1*h2)$", "points": 1 },
+        { "id": "distributive", "content": "$x*(h1+h2)=x*h1+x*h2$", "points": 1 },
+        { "id": "samplewise", "content": "Convolution is always identical to sample-by-sample multiplication.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Convolution is commutative, associative and distributive. Sample-by-sample multiplication is a different operation; in the frequency domain, convolution corresponds to multiplication of transforms.",
+      "source": "EE3731C Classical Signal 1, convolution properties"
+    },
+    {
+      "id": "ee3731c-lti-convolution-diagram",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "The diagram uses sequences beginning at index zero. Which statements about the illustrated convolution are correct?",
+      "image": {
+        "src": "/question-assets/ee3731c/ee3731c-lti-convolution/discrete-convolution.png",
+        "alt": "Stem plots showing x equals one two one, h equals one minus one, and their convolution y equals one one minus one."
+      },
+      "options": [
+        { "id": "length-four", "content": "The output has length $3+2-1=4$.", "points": 1 },
+        { "id": "values", "content": "The output samples are $[1,1,-1,-1]$.", "points": 1 },
+        { "id": "first", "content": "The first output sample is $1 times 1=1$.", "points": 1 },
+        { "id": "length-three", "content": "The full linear convolution has only three samples.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Linear convolution length is $Lx+Lh-1=4$. Direct calculation gives $[1,2,1]*[1,-1]=[1,1,-1,-1]$. The diagram's right panel shows all four indices, including the final negative sample.",
+      "source": "EE3731C Classical Signal 1, discrete convolution examples"
+    },
+    {
+      "id": "ee3731c-lti-causality-impulse",
+      "revision": 1,
+      "type": "boolean",
+      "prompt": "A discrete-time LTI system is causal if and only if its impulse response satisfies $h[n]=0$ for every $n<0$.",
+      "options": [
+        { "id": "true", "content": "True", "points": 1 },
+        { "id": "false", "content": "False", "points": 0 }
+      ],
+      "maxPoints": 1,
+      "explanation": "If $h[n]$ has no negative-time samples, the convolution output at time $n$ depends only on $x[k]$ for $k<=n$. Any nonzero negative-time impulse-response sample introduces dependence on a future input.",
+      "source": "EE3731C Classical Signal 1 Tutorial, causality questions"
+    },
+    {
+      "id": "ee3731c-lti-bibo-condition",
+      "revision": 1,
+      "type": "single",
+      "prompt": "Which condition is necessary and sufficient for BIBO stability of a discrete-time LTI system?",
+      "options": [
+        { "id": "absolute-sum", "content": "The sum of $|h[n]|$ over all integer $n$ is finite.", "points": 1 },
+        { "id": "h-zero", "content": "$h[n]$ must be zero for every $n$.", "points": 0 },
+        { "id": "finite-duration", "content": "$h[n]$ must have finite duration.", "points": 0 },
+        { "id": "causal-only", "content": "The system only needs to be causal.", "points": 0 }
+      ],
+      "maxPoints": 1,
+      "explanation": "Absolute summability ensures that a bounded input produces an output bounded by the input bound times the finite sum. Finite-duration impulse responses satisfy it, but infinite-duration responses can also be absolutely summable.",
+      "source": "EE3731C Classical Signal 1 Tutorial, stability definition and questions"
+    },
+    {
+      "id": "ee3731c-lti-impulse-identity",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Which statements about the unit impulse $delta[n]$ are correct?",
+      "options": [
+        { "id": "identity", "content": "$x[n]*delta[n]=x[n]$.", "points": 1 },
+        { "id": "shift", "content": "$x[n]*delta[n-n0]=x[n-n0]$.", "points": 1 },
+        { "id": "decomposition", "content": "A sequence can be represented as a sum of scaled shifted impulses.", "points": 1 },
+        { "id": "all-ones", "content": "$delta[n]$ equals one for every integer $n$.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "The unit impulse is one only at zero and zero elsewhere. It is the identity for convolution, a shifted impulse shifts a sequence, and impulse decomposition is the basis for characterizing LTI systems by $h[n]$.",
+      "source": "EE3731C Classical Signal 1, impulse decomposition and LTI response"
+    }
+  ]
+}

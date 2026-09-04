@@ -1,0 +1,163 @@
+{
+  "id": "ee3431c-band-theory",
+  "courseCode": "EE3431C",
+  "courseName": "Microelectronics Materials and Devices",
+  "title": "Band Theory",
+  "description": "Ten original questions on atomic energy levels, interactions between atoms, band formation, band occupancy and the electrical behaviour of solids. Multiple-response items use +1 per correct selection and -0.5 per incorrect selection, floored at zero.",
+  "tags": ["Quiz 1", "bands", "transport"],
+  "updatedAt": "2026-09-04T16:00:00+08:00",
+  "questions": [
+    {
+      "id": "ee3431c-band-bohr-model",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Which ideas belong to the simplified Bohr model of an isolated atom?",
+      "options": [
+        { "id": "discrete-orbits", "content": "Electrons occupy allowed orbits with discrete energies.", "points": 1 },
+        { "id": "photon-transition", "content": "A transition between allowed levels exchanges a photon whose energy matches the level difference.", "points": 1 },
+        { "id": "continuous-energy", "content": "An electron bound to the atom may have any continuous energy.", "points": -0.5 },
+        { "id": "classical-collapse", "content": "The model predicts that every allowed orbit immediately collapses into the nucleus.", "points": -0.5 }
+      ],
+      "maxPoints": 2,
+      "explanation": "The Bohr model postulates stationary allowed states with quantized energies. Absorption or emission accompanies a transition and satisfies $Delta E=hf$. The model deliberately avoids the classical prediction of continuous radiation and orbital collapse.",
+      "source": "EE3431C Band Theory with gif 2, slides 3-8"
+    },
+    {
+      "id": "ee3431c-band-pauli-occupancy",
+      "revision": 1,
+      "type": "single",
+      "prompt": "What is the maximum number of electrons that can occupy one spatial atomic orbital?",
+      "options": [
+        { "id": "two", "content": "Two, with opposite spin states", "points": 1 },
+        { "id": "one", "content": "One", "points": 0 },
+        { "id": "four", "content": "Four", "points": 0 },
+        { "id": "unlimited", "content": "Any number if their kinetic energies differ", "points": 0 }
+      ],
+      "maxPoints": 1,
+      "explanation": "The Pauli exclusion principle allows at most two electrons in one spatial orbital, and they must have opposite spins. This occupancy rule becomes important when many atomic states split into bands.",
+      "source": "EE3431C Band Theory with gif 2, atomic electronic configuration section"
+    },
+    {
+      "id": "ee3431c-band-two-atom-splitting",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "When two identical atoms are brought close enough for their electron wavefunctions to overlap, what can occur?",
+      "options": [
+        { "id": "level-splitting", "content": "A formerly degenerate atomic level can split into two distinct levels.", "points": 1 },
+        { "id": "bonding-antibonding", "content": "Bonding and antibonding combinations can form.", "points": 1 },
+        { "id": "interaction-strength", "content": "The splitting generally grows as the interaction becomes stronger.", "points": 1 },
+        { "id": "all-levels-vanish", "content": "All allowed electron energies disappear once the atoms interact.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Overlap couples the originally identical states and lifts their degeneracy, producing lower-energy bonding and higher-energy antibonding combinations. Stronger interaction normally produces greater separation; it does not remove all allowed states.",
+      "source": "EE3431C Band Theory with gif 2, interacting-atoms section"
+    },
+    {
+      "id": "ee3431c-band-many-atom-diagram",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "What does the diagram illustrate as the number of interacting atoms becomes very large?",
+      "image": {
+        "src": "/question-assets/ee3431c/ee3431c-band-theory/band-formation.png",
+        "alt": "Atomic energy levels splitting into dense upper and lower allowed energy bands separated by a forbidden gap."
+      },
+      "options": [
+        { "id": "dense-levels", "content": "Each atomic level produces many closely spaced allowed levels that appear as a band.", "points": 1 },
+        { "id": "forbidden-range", "content": "A range with no allowed states may remain between bands.", "points": 1 },
+        { "id": "atom-count", "content": "For $N$ interacting atoms, an atomic level can generate approximately $N$ closely spaced states.", "points": 1 },
+        { "id": "continuum-everywhere", "content": "Every energy becomes allowed, so forbidden gaps cannot exist.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Interaction among $N$ atoms splits a given atomic level into roughly $N$ states. In a macroscopic solid the spacing is tiny and the states form an allowed band, while intervals containing no states remain forbidden gaps.",
+      "source": "EE3431C Band Theory with gif 2, formation-of-bands section"
+    },
+    {
+      "id": "ee3431c-band-full-band-current",
+      "revision": 1,
+      "type": "boolean",
+      "prompt": "A completely filled energy band normally produces no net electrical current under a small applied field because contributions from occupied states cancel.",
+      "options": [
+        { "id": "true", "content": "True", "points": 1 },
+        { "id": "false", "content": "False", "points": 0 }
+      ],
+      "maxPoints": 1,
+      "explanation": "In a full band, every state with one velocity has a corresponding occupied state with the opposite velocity. A small field cannot simply move electrons into already occupied nearby states, so the full band has no net current contribution.",
+      "source": "EE3431C Band Theory with gif 2, electron transport in bands section"
+    },
+    {
+      "id": "ee3431c-band-metal-occupancy",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Which band arrangements can give metallic electrical behaviour?",
+      "options": [
+        { "id": "partly-filled", "content": "The highest occupied band is only partly filled.", "points": 1 },
+        { "id": "overlapping-bands", "content": "A filled band overlaps an empty band in energy.", "points": 1 },
+        { "id": "large-gap", "content": "A full valence band is separated from an empty conduction band by a very large gap.", "points": -0.5 },
+        { "id": "no-nearby-states", "content": "All nearby states are forbidden at the electron energy.", "points": -0.5 }
+      ],
+      "maxPoints": 2,
+      "explanation": "A partly filled band contains nearby empty states into which electrons can move, and overlapping bands also provide accessible states. A full band separated by a large gap lacks such states and is associated with insulating behaviour.",
+      "source": "EE3431C Band Theory with gif 2, metals-semiconductors-insulators comparison"
+    },
+    {
+      "id": "ee3431c-band-semiconductor-temperature",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "For an intrinsic semiconductor, which qualitative effects are expected when temperature rises?",
+      "options": [
+        { "id": "more-excitation", "content": "More electrons can be thermally excited across the band gap.", "points": 1 },
+        { "id": "holes-created", "content": "Excitation leaves mobile vacancies, or holes, in the valence band.", "points": 1 },
+        { "id": "carrier-increase", "content": "The number of available charge carriers generally increases.", "points": 1 },
+        { "id": "gap-becomes-infinite", "content": "The band gap becomes infinite, eliminating conduction.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Thermal energy promotes some valence electrons into the conduction band. Each excitation creates a conduction electron and a valence-band hole, increasing the carrier population. Temperature does not make the gap infinite.",
+      "source": "EE3431C Band Theory with gif 2, semiconductor conduction section"
+    },
+    {
+      "id": "ee3431c-band-gap-classification",
+      "revision": 1,
+      "type": "single",
+      "prompt": "Two solids have full valence bands at low temperature. Solid P has a small forbidden gap and solid Q has a much larger gap. Which classification is most plausible?",
+      "options": [
+        { "id": "p-semiconductor-q-insulator", "content": "P is a semiconductor and Q is an insulator.", "points": 1 },
+        { "id": "p-insulator-q-metal", "content": "P is an insulator and Q is a metal.", "points": 0 },
+        { "id": "both-metals", "content": "Both are necessarily metals.", "points": 0 },
+        { "id": "gap-irrelevant", "content": "Band-gap size cannot affect electrical behaviour.", "points": 0 }
+      ],
+      "maxPoints": 1,
+      "explanation": "Both start with full valence bands, but a small gap permits appreciable thermal excitation and semiconductor behaviour. A much larger gap suppresses excitation and is characteristic of an insulator.",
+      "source": "EE3431C Band Theory with gif 2, materials classification section"
+    },
+    {
+      "id": "ee3431c-band-valence-conduction-roles",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Which statements correctly use the terms valence band and conduction band?",
+      "options": [
+        { "id": "valence-highest-filled", "content": "At low temperature in a semiconductor, the valence band is the highest occupied band.", "points": 1 },
+        { "id": "conduction-next", "content": "The conduction band is the next higher allowed band into which electrons can be excited.", "points": 1 },
+        { "id": "gap-no-states", "content": "The band gap between them contains no allowed electron states in the ideal crystal model.", "points": 1 },
+        { "id": "same-band", "content": "The valence and conduction bands are two names for the same fully occupied band.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "The valence band contains the bonding electrons and is full at low temperature in an ideal intrinsic semiconductor. The conduction band lies above it, separated by a forbidden interval, and can host excited mobile electrons.",
+      "source": "EE3431C Band Theory with gif 2, valence and conduction bands section"
+    },
+    {
+      "id": "ee3431c-band-periodic-arrangement-effect",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Why can two solids made from the same element have different electronic properties?",
+      "options": [
+        { "id": "spacing-overlap", "content": "Different atomic spacing changes orbital overlap and level splitting.", "points": 1 },
+        { "id": "symmetry-potential", "content": "Different crystal symmetry changes the periodic potential experienced by electrons.", "points": 1 },
+        { "id": "band-structure", "content": "These structural differences can change the resulting band structure.", "points": 1 },
+        { "id": "element-only", "content": "Electronic behaviour is fixed solely by chemical identity and cannot depend on atomic arrangement.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Band structure arises from both atomic states and how atoms interact in the solid. Changing spacing or symmetry changes wavefunction overlap and the periodic potential, so allotropes of the same element can have very different conductivity.",
+      "source": "EE3431C Band Theory with gif 2, periodic solids and electron transport sections"
+    }
+  ]
+}

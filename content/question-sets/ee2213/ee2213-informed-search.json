@@ -1,0 +1,163 @@
+{
+  "id": "ee2213-informed-search",
+  "courseCode": "EE2213",
+  "courseName": "Introduction to Artificial Intelligence",
+  "title": "Cost-Based and Heuristic Search",
+  "description": "Ten original questions on UCS, Greedy Best-First Search, A*, priority updates, tie-breaking, admissibility and consistency. Multiple-response scoring is for practice only: +1 per correct selection and -0.5 per incorrect selection, floored at zero.",
+  "tags": ["Quiz 1", "UCS", "A star"],
+  "updatedAt": "2026-09-04T16:00:00+08:00",
+  "questions": [
+    {
+      "id": "ee2213-informed-ucs-graph-result",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Uniform-cost search is run from S to G on the graph shown, with the goal test performed when a node is popped. Select all correct statements.",
+      "image": {
+        "src": "/question-assets/ee2213/ee2213-informed-search/weighted-search-graph.png",
+        "alt": "Directed graph with S to A cost 2, S to B cost 5, A to C cost 2, B to C cost 1, A to G cost 8, B to G cost 5 and C to G cost 3."
+      },
+      "options": [
+        { "id": "path-sacg", "content": "The optimal path is S-A-C-G.", "points": 1 },
+        { "id": "cost-seven", "content": "The optimal path cost is 7.", "points": 1 },
+        { "id": "a-before-b", "content": "A is popped before B.", "points": 1 },
+        { "id": "direct-a-goal", "content": "S-A-G is optimal because it uses fewer edges.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "UCS orders by cumulative cost. It reaches A at 2, C at 4, B at 5 and then G through C at 7. S-A-G costs 10, so fewer edges do not make it optimal in a weighted graph.",
+      "source": "EE2213 L05 Search Heuristics and Assignment 1 UCS conventions"
+    },
+    {
+      "id": "ee2213-informed-ucs-priority",
+      "revision": 1,
+      "type": "single",
+      "prompt": "What priority does uniform-cost search assign to a frontier node $n$?",
+      "options": [
+        { "id": "g", "content": "$g(n)$, the path cost from the start", "points": 1 },
+        { "id": "h", "content": "$h(n)$, the estimated remaining cost", "points": 0 },
+        { "id": "g-plus-h", "content": "$g(n)+h(n)$", "points": 0 },
+        { "id": "minus-g", "content": "$-g(n)$", "points": 0 }
+      ],
+      "maxPoints": 1,
+      "explanation": "UCS always pops the frontier node with minimum accumulated path cost $g(n)$. Greedy search uses $h(n)$, while A* uses $g(n)+h(n)$.",
+      "source": "EE2213 L05 Search Heuristics, priority functions"
+    },
+    {
+      "id": "ee2213-informed-cheaper-frontier-path",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "A state X is already waiting in a UCS priority frontier with cost 12. A newly expanded node reaches X with cost 8. What should a correct implementation do?",
+      "options": [
+        { "id": "retain-cheaper", "content": "Record the new cost-8 node as the best known node for X.", "points": 1 },
+        { "id": "priority-eight", "content": "Ensure that X can later be processed with priority 8.", "points": 1 },
+        { "id": "parent-update", "content": "Preserve the new node's parent link so the cheaper path can be reconstructed.", "points": 1 },
+        { "id": "ignore-because-seen", "content": "Ignore the new path because X has already been generated once.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "UCS must keep the cheapest known path to an unprocessed state. The replacement node carries both the lower priority and the correct parent chain. Merely marking X as seen would lose the optimal route.",
+      "source": "EE2213 Assignment 1, priority-frontier replacement convention"
+    },
+    {
+      "id": "ee2213-informed-greedy-behaviour",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Which statements describe Greedy Best-First Search?",
+      "options": [
+        { "id": "uses-h", "content": "It prioritizes the estimated remaining cost $h(n)$.", "points": 1 },
+        { "id": "goal-directed", "content": "A good heuristic can make it strongly goal-directed.", "points": 1 },
+        { "id": "ignores-g", "content": "Its priority ignores the cost already paid, $g(n)$.", "points": 1 },
+        { "id": "always-optimal", "content": "It is guaranteed to return an optimal path whenever $h(n)$ is nonnegative.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Greedy search follows the smallest heuristic value and can be fast when the estimate is informative. Because it ignores path cost already incurred, it can choose an expensive route and is not generally optimal.",
+      "source": "EE2213 L05 Search Heuristics, Greedy Best-First Search"
+    },
+    {
+      "id": "ee2213-informed-astar-priority",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "For A* search, what do the terms in $f(n)=g(n)+h(n)$ represent?",
+      "options": [
+        { "id": "g-past", "content": "$g(n)$ is the exact cost accumulated from the start to $n$.", "points": 1 },
+        { "id": "h-future", "content": "$h(n)$ estimates the remaining cost from $n$ to a goal.", "points": 1 },
+        { "id": "f-total", "content": "$f(n)$ estimates the total solution cost through $n$.", "points": 1 },
+        { "id": "h-exact-required", "content": "$h(n)$ must equal the true remaining cost for A* to operate.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "A* combines known past cost with estimated future cost. The heuristic need not be exact; useful optimality guarantees arise from properties such as admissibility and consistency.",
+      "source": "EE2213 L05 Search Heuristics, A* evaluation function"
+    },
+    {
+      "id": "ee2213-informed-admissible-heuristic",
+      "revision": 1,
+      "type": "single",
+      "prompt": "Which condition defines an admissible heuristic?",
+      "options": [
+        { "id": "never-overestimate", "content": "$h(n)$ never exceeds the true cheapest remaining cost $h*(n)$.", "points": 1 },
+        { "id": "always-zero", "content": "$h(n)$ must be zero for every state.", "points": 0 },
+        { "id": "overestimate", "content": "$h(n)$ must always overestimate $h*(n)$.", "points": 0 },
+        { "id": "equal-g", "content": "$h(n)$ must equal $g(n)$.", "points": 0 }
+      ],
+      "maxPoints": 1,
+      "explanation": "Admissibility means optimism: $0 <= h(n) <= h*(n)$ under the usual nonnegative-cost setting. The zero heuristic is admissible but not required; it reduces A* to UCS.",
+      "source": "EE2213 L05 Search Heuristics, admissibility"
+    },
+    {
+      "id": "ee2213-informed-consistency",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "For an edge from $n$ to $n'$ with cost $c(n,n')$, which statements describe a consistent heuristic?",
+      "options": [
+        { "id": "triangle", "content": "It satisfies $h(n) <= c(n,n') + h(n')$.", "points": 1 },
+        { "id": "nondecreasing-f", "content": "$f$ values are nondecreasing along every path.", "points": 1 },
+        { "id": "graph-search", "content": "With nonnegative costs, consistency supports optimal A* graph search without reopening closed states.", "points": 1 },
+        { "id": "requires-perfect", "content": "Consistency requires $h(n)=h*(n)$ for every state.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Consistency is a triangle inequality for heuristic estimates. It makes $f=g+h$ nondecreasing along a path, which prevents a cheaper route to a closed state from appearing later under the standard assumptions. The estimate need not be perfect.",
+      "source": "EE2213 L05 Search Heuristics, consistency"
+    },
+    {
+      "id": "ee2213-informed-fifo-tie-break",
+      "revision": 1,
+      "type": "boolean",
+      "prompt": "When two priority-frontier entries have equal priority, the Assignment 1 convention requires FIFO insertion order while preserving the stated successor-generation order.",
+      "options": [
+        { "id": "true", "content": "True", "points": 1 },
+        { "id": "false", "content": "False", "points": 0 }
+      ],
+      "maxPoints": 1,
+      "explanation": "The assignment fixes FIFO tie-breaking so that traces are deterministic. Changing the successor order or breaking ties alphabetically could change the popped sequence even when final path cost is unchanged.",
+      "source": "EE2213 Assignment 1, Search implementation and measurement conventions"
+    },
+    {
+      "id": "ee2213-informed-stale-entry",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "A heap-based priority frontier keeps an old cost-12 entry for X after inserting a better cost-8 entry. Later, the old entry reaches the top. What is correct?",
+      "options": [
+        { "id": "discard", "content": "Discard the old entry without processing it.", "points": 1 },
+        { "id": "compare-best", "content": "Use the recorded best node or cost for X to recognize that the entry is obsolete.", "points": 1 },
+        { "id": "not-counted", "content": "Under the assignment convention, do not count this discarded entry as a popped node.", "points": 1 },
+        { "id": "expand-anyway", "content": "Expand it again because every heap removal must be processed.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Lazy deletion is valid when an implementation can detect stale entries. The obsolete node must not be expanded, and the assignment explicitly excludes such discarded entries from the popped-node count.",
+      "source": "EE2213 Assignment 1, obsolete priority-frontier entries convention"
+    },
+    {
+      "id": "ee2213-informed-heuristic-dominance",
+      "revision": 1,
+      "type": "multiple",
+      "prompt": "Two admissible heuristics satisfy $h2(n) >= h1(n)$ for every state and both remain no larger than the true remaining cost. Which conclusions are reasonable?",
+      "options": [
+        { "id": "h2-dominates", "content": "$h2$ dominates $h1$.", "points": 1 },
+        { "id": "more-informed", "content": "$h2$ is at least as informed because it is closer to the true cost without overestimating.", "points": 1 },
+        { "id": "fewer-expansions", "content": "A* with $h2$ generally expands no more nodes than A* with $h1$, aside from tie effects.", "points": 1 },
+        { "id": "h1-inadmissible", "content": "$h1$ is therefore inadmissible.", "points": -0.5 }
+      ],
+      "maxPoints": 3,
+      "explanation": "Both heuristics are admissible, but $h2$ provides estimates at least as large and still optimistic, so it dominates $h1$. More informed estimates usually reduce unnecessary expansions; they do not invalidate the weaker heuristic.",
+      "source": "EE2213 L05 Search Heuristics, comparing heuristics"
+    }
+  ]
+}
