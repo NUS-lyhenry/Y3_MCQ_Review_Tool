@@ -45,3 +45,14 @@ This repository is the canonical source for Y3 MCQ Review. The public website ne
 ```
 
 Do not add placeholder, demo, or invented course content unless the user explicitly requests it.
+
+## Content-quality review
+
+- Use only the user-authorized local lecture/tutorial sources. Do not read personal completed notebooks or publish source slides, screenshots, assignments or copied diagrams. Source citations should name a teaching PDF plus a page/slide or question locator; do not invent section names.
+- State assumptions that affect correctness (e.g. intrinsic semiconductor at 0 K, spin versus spatial states, zero-state LTI response, graph direction/tie rules, Haar sign and boundary conventions).
+- Use genuine LaTeX commands inside math delimiters. Validate every formula with KaTeX, not just JSON schema checks.
+- Derive numeric answers independently. Include plausible misconception-based distractors and explain their errors. Vary the number and position of correct answers. Do not make every boolean True or put every single-choice answer first.
+- Preserve the announced +1/-0.5 multiple-response marking. Improve distractors rather than silently changing grading to discourage selecting everything.
+- The content-quality tests include independent reference calculations for selected problems. When changing their input data, update the reference calculation and manually cross-check it; tests cannot prove every conceptual answer is correct.
+- For a substantially new problem, use a new question ID at revision 1. For an edit to the same problem, increment its revision; source-only locator corrections do not require resetting question statistics.
+- `scripts/generate-question-diagrams.py` regenerates the three corrected original diagrams from geometric data using Pillow. It reads no course images. Inspect generated diagrams, their labels, and matching alt text before committing.

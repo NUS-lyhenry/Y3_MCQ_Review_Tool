@@ -4,24 +4,58 @@
   "courseName": "Signal Analytics",
   "title": "CA1 Mock",
   "description": "Ten original questions for the 18 September 2026, 18:30 CA1 covering Lectures 1-4 and associated tutorials. Recommended setup: Exam mode, all 10 questions, 60 minutes. Bring a scientific calculator and one A4-size double-sided cheatsheet. Multiple-response scoring here is practice-only: +1 per correct selection and -0.5 per incorrect selection, floored at zero.",
-  "tags": ["CA1", "mock", "60 minutes"],
-  "updatedAt": "2026-09-04T16:00:00+08:00",
+  "tags": [
+    "CA1",
+    "mock",
+    "60 minutes"
+  ],
+  "updatedAt": "2026-09-05T10:00:00+08:00",
   "questions": [
     {
       "id": "ee3731c-mock-system-classification",
-      "revision": 1,
+      "revision": 2,
       "type": "multiple",
-      "prompt": "Consider $T{x[n]}=x[n]+3u[n+1]$. Which classifications are correct?",
+      "prompt": "Consider $T\\{x[n]\\}=x[n]+3u[n+1]$. Which classifications are correct?",
       "options": [
-        { "id": "memoryless", "content": "Memoryless", "points": 1 },
-        { "id": "causal", "content": "Causal", "points": 1 },
-        { "id": "not-linear", "content": "Not linear", "points": 1 },
-        { "id": "not-ti", "content": "Not time invariant", "points": 1 },
-        { "id": "linear", "content": "Linear", "points": -0.5 }
+        {
+          "id": "causal",
+          "content": "Causal",
+          "points": 1
+        },
+        {
+          "id": "not-ti",
+          "content": "Not time invariant",
+          "points": 1
+        },
+        {
+          "id": "memoryless",
+          "content": "Memoryless",
+          "points": 1
+        },
+        {
+          "id": "time-invariant",
+          "content": "Time invariant",
+          "points": -0.5
+        },
+        {
+          "id": "future-input",
+          "content": "Noncausal because u[n+1] is a future input sample.",
+          "points": -0.5
+        },
+        {
+          "id": "linear",
+          "content": "Linear",
+          "points": -0.5
+        },
+        {
+          "id": "not-linear",
+          "content": "Not linear",
+          "points": 1
+        }
       ],
       "maxPoints": 4,
-      "explanation": "The output at $n$ uses only $x[n]$, so the system is memoryless and causal. The additive term remains when the input is zero, violating linearity, and it is tied to absolute time, violating time invariance.",
-      "source": "EE3731C Classical Signal 1 Tutorial, Question 1(d) concept"
+      "explanation": "The output at $n$ uses only $x[n]$, so the system is memoryless and causal. The additive term remains when the input is zero, violating linearity, and it is tied to absolute time, violating time invariance. The fixed additive sequence u[n+1] is not a future sample of the input x. Its presence therefore does not make this memoryless system noncausal.",
+      "source": "EE3731C ClassicalSignal1Questions.pdf, page 1, Q1(d)"
     },
     {
       "id": "ee3731c-mock-short-convolution",
@@ -29,132 +63,328 @@
       "type": "single",
       "prompt": "Both sequences start at index zero. If $x[n]=[1,2]$ and $h[n]=[2,1]$, what is their full linear convolution?",
       "options": [
-        { "id": "two-five-two", "content": "$[2,5,2]$", "points": 1 },
-        { "id": "two-four", "content": "$[2,4]$", "points": 0 },
-        { "id": "one-four-one", "content": "$[1,4,1]$", "points": 0 },
-        { "id": "three-three", "content": "$[3,3]$", "points": 0 }
+        {
+          "id": "two-five-two",
+          "content": "$[2,5,2]$",
+          "points": 1
+        },
+        {
+          "id": "two-four",
+          "content": "$[2,4]$",
+          "points": 0
+        },
+        {
+          "id": "one-four-one",
+          "content": "$[1,4,1]$",
+          "points": 0
+        },
+        {
+          "id": "three-three",
+          "content": "$[3,3]$",
+          "points": 0
+        }
       ],
       "maxPoints": 1,
       "explanation": "The samples are $y[0]=1(2)=2$, $y[1]=1(1)+2(2)=5$, and $y[2]=2(1)=2$. The output length is $2+2-1=3$.",
-      "source": "EE3731C Classical Signal 1, convolution calculation"
+      "source": "EE3731C Yeo_ClassicalSignal1_condensed.pdf, slides 32-40"
     },
     {
       "id": "ee3731c-mock-causal-stable-impulse",
-      "revision": 1,
+      "revision": 2,
       "type": "multiple",
       "prompt": "An LTI system has $h[n]=(1/2)^n u[n]$. Which statements are correct?",
       "options": [
-        { "id": "causal", "content": "It is causal.", "points": 1 },
-        { "id": "stable", "content": "It is BIBO stable.", "points": 1 },
-        { "id": "absolute-sum-two", "content": "The absolute sum of $h[n]$ is 2.", "points": 1 },
-        { "id": "finite-impulse", "content": "Its impulse response has finite duration.", "points": -0.5 }
+        {
+          "id": "stable",
+          "content": "It is BIBO stable.",
+          "points": 1
+        },
+        {
+          "id": "absolute-sum-two",
+          "content": "The absolute sum of $h[n]$ is 2.",
+          "points": 1
+        },
+        {
+          "id": "finite-impulse",
+          "content": "Its impulse response has finite duration.",
+          "points": -0.5
+        },
+        {
+          "id": "causality-proves-stability",
+          "content": "Its stability follows from causality alone, regardless of the decay factor.",
+          "points": -0.5
+        },
+        {
+          "id": "unit-dc",
+          "content": "Its DC gain is 1.",
+          "points": -0.5
+        },
+        {
+          "id": "causal",
+          "content": "It is causal.",
+          "points": 1
+        }
       ],
       "maxPoints": 3,
-      "explanation": "$u[n]$ makes the response zero for negative time, so it is causal. The geometric absolute sum is $1/(1-1/2)=2$, so it is stable even though the response extends indefinitely.",
-      "source": "EE3731C Classical Signal 1-2 Tutorials, causality and stability"
+      "explanation": "$u[n]$ makes the response zero for negative time, so it is causal. The geometric absolute sum is $1/(1-1/2)=2$, so it is stable even though the response extends indefinitely. It decays but never becomes identically zero at all sufficiently large n. The sum h[n] is 2, so its DC gain is 2. Causality and absolute summability are separate conditions.",
+      "source": "EE3731C Yeo_ClassicalSignal2_condensed.pdf, slides 31-34; EE3731C ClassicalSignal2Questions.pdf, page 1, Q3-Q4"
     },
     {
       "id": "ee3731c-mock-dtft-delay-effects",
-      "revision": 1,
+      "revision": 2,
       "type": "multiple",
       "prompt": "A real sequence is delayed by five samples. Which changes occur in its DTFT?",
       "options": [
-        { "id": "phase", "content": "The spectrum is multiplied by $e^{-j5omega}$.", "points": 1 },
-        { "id": "magnitude-same", "content": "The magnitude spectrum is unchanged.", "points": 1 },
-        { "id": "linear-phase", "content": "A linear phase term is added.", "points": 1 },
-        { "id": "frequency-scale", "content": "Every frequency is multiplied by five.", "points": -0.5 }
+        {
+          "id": "magnitude-same",
+          "content": "The magnitude spectrum is unchanged.",
+          "points": 1
+        },
+        {
+          "id": "frequency-scale",
+          "content": "Every frequency is multiplied by five.",
+          "points": -0.5
+        },
+        {
+          "id": "magnitude-fifth",
+          "content": "The magnitude becomes one-fifth of its original value.",
+          "points": -0.5
+        },
+        {
+          "id": "phase",
+          "content": "The spectrum is multiplied by $e^{-j5\\omega}$.",
+          "points": 1
+        },
+        {
+          "id": "linear-phase",
+          "content": "A linear phase term is added.",
+          "points": 1
+        },
+        {
+          "id": "positive-phase",
+          "content": "Its transform is multiplied by $e^{j5\\omega}$.",
+          "points": -0.5
+        }
       ],
       "maxPoints": 3,
-      "explanation": "Time delay gives $x[n-5]$ transform $e^{-j5omega}X(e^{jomega})$. The factor has unit magnitude and phase $-5omega$, so it changes phase without rescaling the frequency axis.",
-      "source": "EE3731C Classical Signal 2, DTFT time-shift property"
+      "explanation": "Time delay gives $x[n-5]$ transform $e^{-j5\\omega}X(e^{j\\omega})$. The factor has unit magnitude and phase $-5\\omega$, so it changes phase without rescaling the frequency axis. Delay changes phase, not the frequency axis. The positive sign represents an advance, not a delay. The delay factor has unit magnitude.",
+      "source": "EE3731C Yeo_ClassicalSignal2_condensed.pdf, slides 12-13"
     },
     {
       "id": "ee3731c-mock-frequency-response-zero",
-      "revision": 1,
+      "revision": 2,
       "type": "boolean",
-      "prompt": "If an LTI system has $H(e^{jomega0})=0$, then an input $e^{jomega0 n}$ produces zero output in the ideal mathematical model.",
+      "prompt": "If an LTI system has $H(e^{j\\omega_0})=0$, then an input $e^{j\\omega_0 n}$ produces zero output in the ideal mathematical model.",
       "options": [
-        { "id": "true", "content": "True", "points": 1 },
-        { "id": "false", "content": "False", "points": 0 }
+        {
+          "id": "true",
+          "content": "True",
+          "points": 1
+        },
+        {
+          "id": "false",
+          "content": "False",
+          "points": 0
+        }
       ],
       "maxPoints": 1,
-      "explanation": "A complex exponential is an LTI eigenfunction, with output $H(e^{jomega0})e^{jomega0n}$. A zero response at that frequency therefore removes the component completely.",
-      "source": "EE3731C Classical Signal 2, LTI frequency response"
+      "explanation": "A complex exponential is an LTI eigenfunction, with output $H(e^{j\\omega_0})e^{j\\omega_0n}$. A zero response at that frequency therefore removes the component completely.",
+      "source": "EE3731C Yeo_ClassicalSignal2_condensed.pdf, slides 15-16"
     },
     {
       "id": "ee3731c-mock-fir-symmetry",
-      "revision": 1,
+      "revision": 2,
       "type": "single",
-      "prompt": "A real FIR filter has coefficients $h[n]=h[M-n]$ for $0<=n<=M$. What is the key phase implication?",
+      "prompt": "A real FIR filter has coefficients $h[n]=h[M-n]$ for $0\\le n\\le M$. What is the key phase implication?",
       "options": [
-        { "id": "linear-phase", "content": "It can have generalized linear phase with delay $M/2$.", "points": 1 },
-        { "id": "random-phase", "content": "Its phase must be random.", "points": 0 },
-        { "id": "unstable", "content": "The symmetry makes it unstable.", "points": 0 },
-        { "id": "noncausal", "content": "A finite index range makes it necessarily noncausal.", "points": 0 }
+        {
+          "id": "random-phase",
+          "content": "Its phase must be random.",
+          "points": 0
+        },
+        {
+          "id": "linear-phase",
+          "content": "It can have generalized linear phase with delay $M/2$.",
+          "points": 1
+        },
+        {
+          "id": "unstable",
+          "content": "The symmetry makes it unstable.",
+          "points": 0
+        },
+        {
+          "id": "noncausal",
+          "content": "A finite index range makes it necessarily noncausal.",
+          "points": 0
+        }
       ],
       "maxPoints": 1,
       "explanation": "Midpoint symmetry is the standard real-FIR condition for generalized linear phase. The phase includes a delay of $M/2$ samples, with possible sign changes in the real amplitude response.",
-      "source": "EE3731C Classical Signal 3, Type 1 and Type 2 FIR linear phase"
+      "source": "EE3731C Yeo_ClassicalSignal3_condensed.pdf, slides 10-12"
     },
     {
-      "id": "ee3731c-mock-window-choice",
+      "id": "ee3731c-mock-shifted-ideal-lowpass",
       "revision": 1,
       "type": "multiple",
-      "prompt": "A filter specification demands both stronger stopband attenuation and a narrower transition than an existing Kaiser-window design. Which changes may be needed?",
+      "prompt": "Before windowing, shift an ideal low-pass impulse response by 3 samples. The cutoff is $\\omega_c=\\pi/3$, with $h_d[n]=\\sin(\\omega_c(n-3))/(\\pi(n-3))$ away from n=3. Which values or properties are correct?",
       "options": [
-        { "id": "more-taps", "content": "Increase the number of taps.", "points": 1 },
-        { "id": "adjust-beta", "content": "Adjust the Kaiser shape parameter for the attenuation target.", "points": 1 },
-        { "id": "recompute", "content": "Recompute the windowed ideal impulse response using the new parameters.", "points": 1 },
-        { "id": "shorter-always", "content": "Always shorten the filter, because fewer taps create a narrower transition.", "points": -0.5 }
+        {
+          "id": "cutoff-delay",
+          "content": "The time shift changes the cutoff to 3π instead of π/3.",
+          "points": -0.5
+        },
+        {
+          "id": "zero-centre",
+          "content": "The centre value is zero because the displayed numerator is zero.",
+          "points": -0.5
+        },
+        {
+          "id": "neighbour",
+          "content": "$h_d[4]=\\sqrt3/(2\\pi)$.",
+          "points": 1
+        },
+        {
+          "id": "centre",
+          "content": "$h_d[3]=1/3$ by the limiting value.",
+          "points": 1
+        },
+        {
+          "id": "symmetry",
+          "content": "$h_d[2]=h_d[4]$.",
+          "points": 1
+        },
+        {
+          "id": "finite-causal",
+          "content": "A finite shift alone makes this ideal impulse response finite-duration and causal.",
+          "points": -0.5
+        }
       ],
       "maxPoints": 3,
-      "explanation": "More demanding attenuation and transition requirements generally require a higher order. The Kaiser parameter controls window shape, and the final coefficients must be recomputed; fewer taps usually broaden rather than narrow the transition.",
-      "source": "EE3731C Classical Signal 3 Tutorial, Kaiser-window design"
+      "explanation": "Use $\\lim_{t\\to0}\\sin(\\omega_ct)/(\\pi t)=\\omega_c/\\pi=1/3$. At n=4 the value is sin(π/3)/π; symmetry gives the same value at n=2. The shift adds linear phase but does not alter the cutoff or remove the infinite tails. A finite FIR approximation still requires approximation such as windowing.",
+      "source": "EE3731C ClassicalSignal3Questions.pdf, page 1, Q1; EE3731C Yeo_ClassicalSignal2_condensed.pdf, slides 17-19"
     },
     {
       "id": "ee3731c-mock-circular-convolution",
-      "revision": 1,
+      "revision": 2,
       "type": "multiple",
       "prompt": "You multiply two 5-point DFTs and take a 5-point inverse DFT for two length-5 sequences. Which statements are correct?",
       "options": [
-        { "id": "circular", "content": "The direct result is 5-point circular convolution.", "points": 1 },
-        { "id": "linear-nine", "content": "The full linear convolution would have length 9.", "points": 1 },
-        { "id": "pad-nine", "content": "Padding both sequences to at least length 9 before the DFT prevents wraparound aliasing.", "points": 1 },
-        { "id": "always-linear", "content": "The unpadded 5-point result must equal all nine linear-convolution samples.", "points": -0.5 }
+        {
+          "id": "pad-nine",
+          "content": "Padding both sequences to at least length 9 before the DFT prevents wraparound aliasing.",
+          "points": 1
+        },
+        {
+          "id": "pad-eight",
+          "content": "Padding to length eight is always sufficient for arbitrary length-five inputs.",
+          "points": -0.5
+        },
+        {
+          "id": "circular",
+          "content": "The direct result is 5-point circular convolution.",
+          "points": 1
+        },
+        {
+          "id": "padding-resolution",
+          "content": "Adding zero padding changes the underlying full linear convolution of the original sequences.",
+          "points": -0.5
+        },
+        {
+          "id": "always-linear",
+          "content": "The unpadded result directly lists all nine linear-convolution samples.",
+          "points": -0.5
+        },
+        {
+          "id": "linear-nine",
+          "content": "The full linear convolution would have length 9.",
+          "points": 1
+        }
       ],
       "maxPoints": 3,
-      "explanation": "Same-length DFT multiplication implements circular convolution. Two length-5 sequences have linear length $5+5-1=9$, so a transform length of at least nine is required to retain the complete linear result.",
-      "source": "EE3731C Classical Signal 3, fast convolution and Tutorial Question 4"
+      "explanation": "Same-length DFT multiplication implements circular convolution. Two length-5 sequences have linear length $5+5-1=9$, so a transform length of at least nine is required to retain the complete linear result. Five output positions cannot directly list nine samples. Length eight can alias the ninth sample onto the first. Sufficient padding changes the transform representation, not the original linear convolution.",
+      "source": "EE3731C Yeo_ClassicalSignal3_condensed.pdf, slides 32-55; EE3731C ClassicalSignal3Questions.pdf, pages 1-2, Q4"
     },
     {
       "id": "ee3731c-mock-stft-resolution",
-      "revision": 1,
+      "revision": 2,
       "type": "multiple",
       "prompt": "How does choosing a shorter STFT window usually change the analysis?",
       "options": [
-        { "id": "time-better", "content": "Time localization improves.", "points": 1 },
-        { "id": "frequency-worse", "content": "Frequency resolution becomes poorer.", "points": 1 },
-        { "id": "tradeoff", "content": "The result illustrates the time-frequency resolution trade-off.", "points": 1 },
-        { "id": "both-perfect", "content": "Both time and frequency resolution become arbitrarily fine.", "points": -0.5 }
+        {
+          "id": "time-better",
+          "content": "Time localization improves.",
+          "points": 1
+        },
+        {
+          "id": "both-perfect",
+          "content": "Both time and frequency resolution improve simultaneously without limit.",
+          "points": -0.5
+        },
+        {
+          "id": "zero-padding-fix",
+          "content": "Zero-padding a fixed short window recovers the true resolution of a much longer data window.",
+          "points": -0.5
+        },
+        {
+          "id": "frequency-worse",
+          "content": "Frequency resolution becomes poorer.",
+          "points": 1
+        },
+        {
+          "id": "tradeoff",
+          "content": "The result illustrates the time-frequency resolution trade-off.",
+          "points": 1
+        },
+        {
+          "id": "longer-faster",
+          "content": "A longer data window is always better for pinpointing a brief transient in time.",
+          "points": -0.5
+        }
       ],
       "maxPoints": 3,
-      "explanation": "A short window isolates changes in time but contains fewer cycles with which to distinguish nearby frequencies. A longer window makes the opposite trade-off.",
-      "source": "EE3731C Classical Signal 4, slides 9-14"
+      "explanation": "A short window isolates changes in time but contains fewer cycles with which to distinguish nearby frequencies. A longer window makes the opposite trade-off. Window duration trades time localization against frequency resolution. Padding samples the spectrum more densely but does not add observation time. Long windows smear brief events in time.",
+      "source": "EE3731C Yeo_ClassicalSignal4_condensed.pdf, slides 9-14"
     },
     {
-      "id": "ee3731c-mock-spin-cycle-logic",
+      "id": "ee3731c-mock-cycle-spin-reconstruction",
       "revision": 1,
       "type": "multiple",
-      "prompt": "A cycle-spinning denoiser processes several circularly shifted versions of one signal. Which steps are required before producing the final average?",
+      "prompt": "A one-level Haar denoiser keeps all approximation coefficients and sets all detail coefficients to zero, so each adjacent pair reconstructs as its pairwise mean. For x=[2,6,9,15], process two branches: no shift, and a circular right shift by one sample. Undo each shift before averaging the two reconstructions. Which statements are correct?",
       "options": [
-        { "id": "dwt", "content": "Transform and process each shifted signal in the wavelet domain.", "points": 1 },
-        { "id": "reconstruct", "content": "Apply the inverse wavelet transform to each processed version.", "points": 1 },
-        { "id": "unshift", "content": "Undo the corresponding circular shift on each reconstruction.", "points": 1 },
-        { "id": "average-shifted", "content": "Average without undoing shifts, so unrelated sample positions are deliberately mixed.", "points": -0.5 }
+        {
+          "id": "final",
+          "content": "The final average is [6.25,5.75,9.75,10.25].",
+          "points": 1
+        },
+        {
+          "id": "one-sample-output",
+          "content": "Downsampling means the final reconstructed output has only one sample.",
+          "points": -0.5
+        },
+        {
+          "id": "branch-zero",
+          "content": "The unshifted branch reconstructs as [4,4,12,12].",
+          "points": 1
+        },
+        {
+          "id": "unchanged",
+          "content": "Discarding details necessarily leaves x unchanged.",
+          "points": -0.5
+        },
+        {
+          "id": "shifted-average",
+          "content": "Average the still-shifted second result [8.5,8.5,7.5,7.5] without alignment.",
+          "points": -0.5
+        },
+        {
+          "id": "branch-aligned",
+          "content": "After undoing the right shift, the second branch is [8.5,7.5,7.5,8.5].",
+          "points": 1
+        }
       ],
       "maxPoints": 3,
-      "explanation": "Each shifted branch is transformed, modified and reconstructed. The shift must then be inverted so all outputs are aligned before averaging, which reduces the ordinary DWT's sensitivity to translation.",
-      "source": "EE3731C Classical Signal 4, spin-cycle slides 41-44 and Tutorial 4 Question 1"
+      "explanation": "Branch 0 averages pairs (2,6) and (9,15). The right-shifted input is [15,2,6,9], which reconstructs to [8.5,8.5,7.5,7.5]. Undoing its shift gives [8.5,7.5,7.5,8.5]. Samplewise averaging with branch 0 yields the stated result. Alignment is essential, and reconstruction restores four samples.",
+      "source": "EE3731C Yeo_ClassicalSignal4_condensed.pdf, slides 41-44; EE3731C ClassicalSignal4Questions.pdf, page 1, Q1"
     }
   ]
 }

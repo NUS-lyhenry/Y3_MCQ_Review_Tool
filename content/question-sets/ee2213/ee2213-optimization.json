@@ -3,43 +3,79 @@
   "courseCode": "EE2213",
   "courseName": "Introduction to Artificial Intelligence",
   "title": "Gradient Descent and Simulated Annealing",
-  "description": "Ten original questions on gradient updates, learning rates, convergence, stochastic proposals, temperature, worse-move acceptance and best-so-far tracking. Multiple-response scoring is for practice only: +1 per correct selection and -0.5 per incorrect selection, floored at zero.",
-  "tags": ["Quiz 1", "optimization", "Assignment 1"],
-  "updatedAt": "2026-09-04T16:00:00+08:00",
+  "description": "Ten original questions on gradient updates, learning rates, convergence, stochastic proposals, temperature, worse-move acceptance and best-so-far tracking. Multiple-response scoring is for practice only: +1 per correct selection and -0.5 per incorrect selection, floored at zero. Includes projected two-variable gradient descent and full-batch versus stochastic gradients.",
+  "tags": [
+    "Quiz 1",
+    "optimization",
+    "Assignment 1"
+  ],
+  "updatedAt": "2026-09-05T10:00:00+08:00",
   "questions": [
     {
-      "id": "ee2213-optimization-gradient-update",
+      "id": "ee2213-optimization-projected-two-dimensional",
       "revision": 1,
       "type": "single",
-      "prompt": "For minimizing a differentiable scalar objective $f(x)$, which update is standard gradient descent with learning rate $alpha>0$?",
+      "prompt": "Minimize $f(x,y)=(x-3)^2+2(y+1)^2$ with $0\\le x,y\\le10$. From $(1,1)$, take a simultaneous gradient step with $\\alpha=0.5$, then clip each coordinate to the domain. What is the next point?",
       "options": [
-        { "id": "subtract", "content": "$x_{next}=x-alpha f'(x)$", "points": 1 },
-        { "id": "add", "content": "$x_{next}=x+alpha f'(x)$", "points": 0 },
-        { "id": "ignore-gradient", "content": "$x_{next}=alpha x$", "points": 0 },
-        { "id": "random-only", "content": "$x_{next}$ is chosen uniformly at random", "points": 0 }
+        {
+          "id": "three-zero",
+          "content": "$(3,0)$",
+          "points": 1
+        },
+        {
+          "id": "three-minus-three",
+          "content": "$(3,-3)$",
+          "points": 0
+        },
+        {
+          "id": "zero-five",
+          "content": "$(0,5)$",
+          "points": 0
+        },
+        {
+          "id": "two-zero",
+          "content": "$(2,0)$",
+          "points": 0
+        }
       ],
       "maxPoints": 1,
-      "explanation": "The gradient points in the direction of steepest local increase, so minimization moves in the negative-gradient direction. Adding the gradient would perform local ascent instead.",
-      "source": "EE2213 L06 Gradient Descent, update rule"
+      "explanation": "At $(1,1)$, $\\nabla f=(-4,8)$. The unprojected step is $(1,1)-0.5(-4,8)=(3,-3)$. Clipping to $[0,10]^2$ gives $(3,0)$. Returning $(3,-3)$ ignores the constraint; adding the gradient reverses the descent direction. Both partial derivatives must be evaluated at the original point.",
+      "source": "EE2213 L06_gradient_descent.pdf, pages 5-9; EE2213 EE2213_Assignment1.pdf, page 5, Q4"
     },
     {
       "id": "ee2213-optimization-learning-rate",
-      "revision": 1,
+      "revision": 2,
       "type": "multiple",
       "prompt": "How can the learning rate affect gradient descent?",
       "options": [
-        { "id": "small-slow", "content": "A very small rate can produce slow progress.", "points": 1 },
-        { "id": "large-overshoot", "content": "A rate that is too large can overshoot or diverge.", "points": 1 },
-        { "id": "moderate-converge", "content": "A suitable rate can move efficiently toward a local minimum.", "points": 1 },
-        { "id": "no-effect", "content": "The rate changes only printing precision and never changes the iterates.", "points": -0.5 }
+        {
+          "id": "large-overshoot",
+          "content": "A rate that is too large can overshoot or diverge.",
+          "points": 1
+        },
+        {
+          "id": "no-effect",
+          "content": "The rate changes only printing precision and never changes the iterates.",
+          "points": -0.5
+        },
+        {
+          "id": "moderate-converge",
+          "content": "A suitable rate can move efficiently toward a local minimum.",
+          "points": 1
+        },
+        {
+          "id": "small-slow",
+          "content": "A very small rate can produce slow progress.",
+          "points": 1
+        }
       ],
       "maxPoints": 3,
       "explanation": "The learning rate scales every update. Tiny steps can converge slowly, while excessive steps may cross the valley repeatedly or become unstable. A well-chosen rate balances speed and stability.",
-      "source": "EE2213 L06 Gradient Descent, learning-rate behaviour"
+      "source": "EE2213 L06_gradient_descent.pdf, pages 4-5"
     },
     {
       "id": "ee2213-optimization-diagram-trajectory",
-      "revision": 1,
+      "revision": 2,
       "type": "multiple",
       "prompt": "The diagram shows gradient descent on $f(x)=(x-2)^2$. Which statements are correct?",
       "image": {
@@ -47,89 +83,185 @@
         "alt": "Parabolic objective with numbered gradient-descent iterates approaching the minimum at x equals 2."
       },
       "options": [
-        { "id": "positive-gradient-left", "content": "At the starting point left of 2, the derivative is negative.", "points": 1 },
-        { "id": "subtract-moves-right", "content": "Subtracting the negative derivative moves the iterate to the right.", "points": 1 },
-        { "id": "gradient-shrinks", "content": "The gradient magnitude decreases as the iterates approach the minimum.", "points": 1 },
-        { "id": "maximum", "content": "The green point is a local maximum.", "points": -0.5 }
+        {
+          "id": "subtract-moves-right",
+          "content": "Subtracting the negative derivative moves the iterate to the right.",
+          "points": 1
+        },
+        {
+          "id": "maximum",
+          "content": "The green point is a local maximum.",
+          "points": -0.5
+        },
+        {
+          "id": "positive-gradient-left",
+          "content": "At the starting point left of 2, the derivative is negative.",
+          "points": 1
+        },
+        {
+          "id": "gradient-shrinks",
+          "content": "The gradient magnitude decreases as the iterates approach the minimum.",
+          "points": 1
+        }
       ],
       "maxPoints": 3,
       "explanation": "Here $f'(x)=2(x-2)$, which is negative to the left of 2. The update subtracts that negative value and moves right. Both slope and step magnitude shrink near the minimum, which is the green point.",
-      "source": "EE2213 L06 Gradient Descent, one-dimensional examples"
+      "source": "EE2213 L06_gradient_descent.pdf, pages 4-5"
     },
     {
       "id": "ee2213-optimization-nonconvex-limit",
-      "revision": 1,
+      "revision": 2,
       "type": "multiple",
       "prompt": "What difficulties can basic gradient descent face on a nonconvex objective?",
       "options": [
-        { "id": "local-minimum", "content": "It may converge to a local minimum that is not globally best.", "points": 1 },
-        { "id": "saddle", "content": "It may make slow progress near a saddle point or flat region.", "points": 1 },
-        { "id": "initialization", "content": "Its result can depend on initialization.", "points": 1 },
-        { "id": "global-guarantee", "content": "A differentiable objective guarantees convergence to the global minimum from every start.", "points": -0.5 }
+        {
+          "id": "initialization",
+          "content": "Its result can depend on initialization.",
+          "points": 1
+        },
+        {
+          "id": "saddle",
+          "content": "It may make slow progress near a saddle point or flat region.",
+          "points": 1
+        },
+        {
+          "id": "local-minimum",
+          "content": "It may converge to a local minimum that is not globally best.",
+          "points": 1
+        },
+        {
+          "id": "global-guarantee",
+          "content": "A differentiable objective guarantees convergence to the global minimum from every start.",
+          "points": -0.5
+        }
       ],
       "maxPoints": 3,
       "explanation": "Local gradient information does not reveal the entire landscape. Different starts can enter different basins, and small gradients can slow progress around flat regions or saddles. Differentiability alone gives no global guarantee.",
-      "source": "EE2213 L06 Gradient Descent, limitations and local minima"
+      "source": "EE2213 L06_gradient_descent.pdf, pages 7-9; EE2213 L07_SA.pdf, pages 4 and 8"
     },
     {
       "id": "ee2213-optimization-stopping-criteria",
-      "revision": 1,
+      "revision": 2,
       "type": "multiple",
       "prompt": "Which are reasonable stopping conditions for an iterative gradient-descent implementation?",
       "options": [
-        { "id": "small-gradient", "content": "The gradient norm falls below a tolerance.", "points": 1 },
-        { "id": "small-change", "content": "The objective or parameter change becomes sufficiently small.", "points": 1 },
-        { "id": "iteration-limit", "content": "A maximum iteration count is reached.", "points": 1 },
-        { "id": "first-increase-always", "content": "Stop after the first objective increase in every possible implementation, regardless of momentum or noise.", "points": -0.5 }
+        {
+          "id": "small-gradient",
+          "content": "The gradient norm falls below a tolerance.",
+          "points": 1
+        },
+        {
+          "id": "first-increase-always",
+          "content": "Stop after the first objective increase in every possible implementation, regardless of momentum or noise.",
+          "points": -0.5
+        },
+        {
+          "id": "iteration-limit",
+          "content": "A maximum iteration count is reached.",
+          "points": 1
+        },
+        {
+          "id": "small-change",
+          "content": "The objective or parameter change becomes sufficiently small.",
+          "points": 1
+        }
       ],
       "maxPoints": 3,
       "explanation": "Small gradients or small changes indicate approximate stationarity, while an iteration cap prevents unbounded runtime. A single increase is not a universal stopping rule because stochastic or accelerated methods may be nonmonotonic.",
-      "source": "EE2213 L06 Gradient Descent, implementation and convergence checks"
+      "source": "EE2213 L06_gradient_descent.pdf, pages 8-9"
     },
     {
       "id": "ee2213-optimization-sa-proposal",
-      "revision": 1,
+      "revision": 2,
       "type": "multiple",
       "prompt": "What roles do proposal generation and acceptance play in simulated annealing?",
       "options": [
-        { "id": "neighbour", "content": "The proposal mechanism generates a candidate neighbouring state.", "points": 1 },
-        { "id": "better-accept", "content": "A better candidate is normally accepted.", "points": 1 },
-        { "id": "worse-possible", "content": "A worse candidate may still be accepted probabilistically.", "points": 1 },
-        { "id": "gradient-required", "content": "Every proposal must be computed from an exact derivative.", "points": -0.5 }
+        {
+          "id": "better-accept",
+          "content": "A better candidate is normally accepted.",
+          "points": 1
+        },
+        {
+          "id": "neighbour",
+          "content": "The proposal mechanism generates a candidate neighbouring state.",
+          "points": 1
+        },
+        {
+          "id": "gradient-required",
+          "content": "Every proposal must be computed from an exact derivative.",
+          "points": -0.5
+        },
+        {
+          "id": "worse-possible",
+          "content": "A worse candidate may still be accepted probabilistically.",
+          "points": 1
+        }
       ],
       "maxPoints": 3,
       "explanation": "Simulated annealing is a stochastic local search method. It proposes a neighbour, accepts improvements, and sometimes accepts worsening moves to escape local minima. It does not require an analytic gradient.",
-      "source": "EE2213 L07 Simulated Annealing, algorithm overview"
+      "source": "EE2213 L07_SA.pdf, pages 1-2"
     },
     {
       "id": "ee2213-optimization-sa-acceptance",
-      "revision": 1,
+      "revision": 2,
       "type": "single",
-      "prompt": "For minimization, a proposal increases the objective by $Delta>0$. Which expression is the usual probability of accepting this worse move at temperature $T>0$?",
+      "prompt": "For minimization, a proposal increases the objective by $\\Delta>0$. Which expression is the usual probability of accepting this worse move at temperature $T>0$?",
       "options": [
-        { "id": "boltzmann", "content": "$exp(-Delta/T)$", "points": 1 },
-        { "id": "always-one", "content": "$1$ for every $Delta$ and $T$", "points": 0 },
-        { "id": "negative", "content": "$-Delta/T$", "points": 0 },
-        { "id": "exp-positive", "content": "$exp(Delta/T)$", "points": 0 }
+        {
+          "id": "always-one",
+          "content": "$1$ for every $\\Delta$ and $T$",
+          "points": 0
+        },
+        {
+          "id": "boltzmann",
+          "content": "$\\exp(-\\Delta/T)$",
+          "points": 1
+        },
+        {
+          "id": "negative",
+          "content": "$-\\Delta/T$",
+          "points": 0
+        },
+        {
+          "id": "exp-positive",
+          "content": "$\\exp(\\Delta/T)$",
+          "points": 0
+        }
       ],
       "maxPoints": 1,
-      "explanation": "$exp(-Delta/T)$ lies between zero and one. Larger deterioration lowers the probability, while higher temperature raises it. The positive-exponent expression can exceed one and is not a probability.",
-      "source": "EE2213 L07 Simulated Annealing, worse-move acceptance"
+      "explanation": "$\\exp(-\\Delta/T)$ lies between zero and one. Larger deterioration lowers the probability, while higher temperature raises it. The positive-exponent expression can exceed one and is not a probability.",
+      "source": "EE2213 L07_SA.pdf, page 1"
     },
     {
       "id": "ee2213-optimization-temperature-effects",
-      "revision": 1,
+      "revision": 2,
       "type": "multiple",
       "prompt": "How does temperature change simulated annealing behaviour?",
       "options": [
-        { "id": "high-explore", "content": "High temperature makes worse moves more likely and promotes exploration.", "points": 1 },
-        { "id": "low-greedy", "content": "Low temperature makes the method behave more greedily.", "points": 1 },
-        { "id": "cooling-transition", "content": "A cooling schedule gradually shifts the search from exploration toward exploitation.", "points": 1 },
-        { "id": "zero-accept-all", "content": "At zero temperature, every worse move is accepted.", "points": -0.5 }
+        {
+          "id": "zero-accept-all",
+          "content": "At zero temperature, every worse move is accepted.",
+          "points": -0.5
+        },
+        {
+          "id": "high-explore",
+          "content": "High temperature makes worse moves more likely and promotes exploration.",
+          "points": 1
+        },
+        {
+          "id": "low-greedy",
+          "content": "Low temperature makes the method behave more greedily.",
+          "points": 1
+        },
+        {
+          "id": "cooling-transition",
+          "content": "A cooling schedule gradually shifts the search from exploration toward exploitation.",
+          "points": 1
+        }
       ],
       "maxPoints": 3,
       "explanation": "Temperature controls willingness to accept uphill moves. High temperature allows broad exploration; cooling suppresses worse moves. In the zero-temperature limit, a positive deterioration has acceptance probability approaching zero.",
-      "source": "EE2213 L07 Simulated Annealing, temperature and cooling"
+      "source": "EE2213 L07_SA.pdf, pages 1-3"
     },
     {
       "id": "ee2213-optimization-best-so-far",
@@ -137,27 +269,61 @@
       "type": "boolean",
       "prompt": "A simulated-annealing implementation should track the best state seen separately from the current state, because the current state may temporarily become worse after an accepted exploratory move.",
       "options": [
-        { "id": "true", "content": "True", "points": 1 },
-        { "id": "false", "content": "False", "points": 0 }
+        {
+          "id": "true",
+          "content": "True",
+          "points": 1
+        },
+        {
+          "id": "false",
+          "content": "False",
+          "points": 0
+        }
       ],
       "maxPoints": 1,
       "explanation": "Accepting worse moves is intentional, so the final current state need not be the best state encountered. Separate best-so-far tracking preserves the best objective value and corresponding solution.",
-      "source": "EE2213 Assignment 1, optimization best-so-far requirement"
+      "source": "EE2213 EE2213_Assignment1.pdf, pages 5-6, Q5"
     },
     {
-      "id": "ee2213-optimization-reproducibility",
+      "id": "ee2213-optimization-stochastic-gradient",
       "revision": 1,
       "type": "multiple",
-      "prompt": "Which practices make a simulated-annealing experiment easier to interpret and reproduce?",
+      "prompt": "An objective is the mean loss across many training examples. Compare full-batch gradient descent and stochastic or mini-batch gradient descent. Which statements are correct?",
       "options": [
-        { "id": "seed", "content": "Record or fix the random-number seed for a controlled run.", "points": 1 },
-        { "id": "schedule", "content": "Report the initial temperature and cooling schedule.", "points": 1 },
-        { "id": "best-objective", "content": "Track both current and best-so-far objective values.", "points": 1 },
-        { "id": "hide-settings", "content": "Change several parameters between runs without recording them.", "points": -0.5 }
+        {
+          "id": "noisy",
+          "content": "A stochastic update can increase the full-data objective even if it follows a negative sampled gradient.",
+          "points": 1
+        },
+        {
+          "id": "each-step-global",
+          "content": "Every mini-batch step is guaranteed to reach the global minimum.",
+          "points": -0.5
+        },
+        {
+          "id": "no-derivatives",
+          "content": "Stochastic gradient descent requires no derivative information.",
+          "points": -0.5
+        },
+        {
+          "id": "same-gradient",
+          "content": "Every individual-example gradient must equal the full-batch gradient.",
+          "points": -0.5
+        },
+        {
+          "id": "full-data",
+          "content": "A full-batch update uses the gradient of the loss over all training examples.",
+          "points": 1
+        },
+        {
+          "id": "subset",
+          "content": "A mini-batch update estimates the gradient using a subset of examples.",
+          "points": 1
+        }
       ],
       "maxPoints": 3,
-      "explanation": "Random seed, cooling settings and trace metrics explain why stochastic runs differ and allow controlled comparison. Unrecorded parameter changes make outcomes impossible to attribute reliably.",
-      "source": "EE2213 L07 Simulated Annealing and Assignment 1 optimization experiments"
+      "explanation": "Full-batch gradients use the whole empirical objective. Subsampling reduces work per update but introduces variation: individual gradients may disagree, so full-data loss need not decrease at each step. SGD still uses derivatives and has no universal one-step global-optimum guarantee.",
+      "source": "EE2213 L07_SA.pdf, pages 9-10"
     }
   ]
 }

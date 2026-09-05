@@ -3,157 +3,323 @@
   "courseCode": "EE3731C",
   "courseName": "Signal Analytics",
   "title": "DTFT and Frequency Response",
-  "description": "Ten original questions on the DTFT, periodicity, transform properties, frequency response, phase delay and moving-average filters. Multiple-response scoring is for practice only: +1 per correct selection and -0.5 per incorrect selection, floored at zero.",
-  "tags": ["CA1", "DTFT", "frequency response"],
-  "updatedAt": "2026-09-04T16:00:00+08:00",
+  "description": "Ten original questions on the DTFT, periodicity, transform properties, frequency response, phase delay and moving-average filters. Multiple-response scoring is for practice only: +1 per correct selection and -0.5 per incorrect selection, floored at zero. Includes a rational-transform output calculation and a four-tap moving-average response.",
+  "tags": [
+    "CA1",
+    "DTFT",
+    "frequency response"
+  ],
+  "updatedAt": "2026-09-05T10:00:00+08:00",
   "questions": [
     {
       "id": "ee3731c-dtft-definition-periodicity",
-      "revision": 1,
+      "revision": 2,
       "type": "multiple",
-      "prompt": "Which statements about the discrete-time Fourier transform $X(e^{j omega})$ are correct?",
+      "prompt": "Which statements about the discrete-time Fourier transform $X(e^{j \\omega})$ are correct?",
       "options": [
-        { "id": "weighted-sum", "content": "It is formed by summing $x[n]e^{-j omega n}$ over integer $n$.", "points": 1 },
-        { "id": "two-pi-periodic", "content": "It is periodic in $omega$ with period $2pi$.", "points": 1 },
-        { "id": "continuous-frequency", "content": "Its frequency variable is continuous even though time is discrete.", "points": 1 },
-        { "id": "one-period-only", "content": "Values outside one period are unrelated to values inside it.", "points": -0.5 }
+        {
+          "id": "two-pi-periodic",
+          "content": "It is periodic in $\\omega$ with period $2\\pi$.",
+          "points": 1
+        },
+        {
+          "id": "weighted-sum",
+          "content": "It is formed by summing $x[n]e^{-j \\omega n}$ over integer $n$.",
+          "points": 1
+        },
+        {
+          "id": "one-period-only",
+          "content": "Values outside one period are unrelated to values inside it.",
+          "points": -0.5
+        },
+        {
+          "id": "continuous-frequency",
+          "content": "Its frequency variable is continuous even though time is discrete.",
+          "points": 1
+        }
       ],
       "maxPoints": 3,
-      "explanation": "The DTFT maps an integer-indexed sequence to a continuous, $2pi$-periodic frequency function. Adding $2pi$ to $omega$ leaves every exponential basis term unchanged.",
-      "source": "EE3731C Classical Signal 2, slides 6-12"
+      "explanation": "The DTFT maps an integer-indexed sequence to a continuous, $2\\pi$-periodic frequency function. Adding $2\\pi$ to $\\omega$ leaves every exponential basis term unchanged.",
+      "source": "EE3731C Yeo_ClassicalSignal2_condensed.pdf, slides 6-12"
     },
     {
       "id": "ee3731c-dtft-time-shift",
-      "revision": 1,
+      "revision": 2,
       "type": "single",
-      "prompt": "If $x[n]$ has DTFT $X(e^{j omega})$, what is the DTFT of $x[n-n0]$?",
+      "prompt": "If $x[n]$ has DTFT $X(e^{j \\omega})$, what is the DTFT of $x[n-n_0]$?",
       "options": [
-        { "id": "phase-factor", "content": "$e^{-j omega n0}X(e^{j omega})$", "points": 1 },
-        { "id": "frequency-shift", "content": "$X(e^{j(omega-n0)})$", "points": 0 },
-        { "id": "scale", "content": "$n0 X(e^{j omega})$", "points": 0 },
-        { "id": "unchanged", "content": "$X(e^{j omega})$ for every $n0$", "points": 0 }
+        {
+          "id": "frequency-shift",
+          "content": "$X(e^{j(\\omega-n_0)})$",
+          "points": 0
+        },
+        {
+          "id": "scale",
+          "content": "$n_0 X(e^{j \\omega})$",
+          "points": 0
+        },
+        {
+          "id": "phase-factor",
+          "content": "$e^{-j \\omega n_0}X(e^{j \\omega})$",
+          "points": 1
+        },
+        {
+          "id": "unchanged",
+          "content": "$X(e^{j \\omega})$ for every $n_0$",
+          "points": 0
+        }
       ],
       "maxPoints": 1,
       "explanation": "A delay in time multiplies the spectrum by a linear-phase factor. Its magnitude is one, so the shift changes phase but not the magnitude spectrum.",
-      "source": "EE3731C Classical Signal 2, DTFT time-shift property"
+      "source": "EE3731C Yeo_ClassicalSignal2_condensed.pdf, slides 12-13"
     },
     {
       "id": "ee3731c-dtft-convolution-theorem",
-      "revision": 1,
+      "revision": 2,
       "type": "multiple",
       "prompt": "For $y[n]=x[n]*h[n]$, which frequency-domain statements are correct?",
       "options": [
-        { "id": "product", "content": "$Y(e^{j omega})=X(e^{j omega})H(e^{j omega})$.", "points": 1 },
-        { "id": "magnitude-product", "content": "$|Y|=|X||H|$.", "points": 1 },
-        { "id": "phase-sum", "content": "Where the transforms are nonzero, output phase is input phase plus system phase modulo $2pi$.", "points": 1 },
-        { "id": "time-product", "content": "Linear convolution in time becomes addition in frequency.", "points": -0.5 }
+        {
+          "id": "magnitude-product",
+          "content": "$|Y|=|X||H|$.",
+          "points": 1
+        },
+        {
+          "id": "phase-sum",
+          "content": "Where the transforms are nonzero, output phase is input phase plus system phase modulo $2\\pi$.",
+          "points": 1
+        },
+        {
+          "id": "time-product",
+          "content": "Linear convolution in time becomes addition in frequency.",
+          "points": -0.5
+        },
+        {
+          "id": "product",
+          "content": "$Y(e^{j \\omega})=X(e^{j \\omega})H(e^{j \\omega})$.",
+          "points": 1
+        }
       ],
       "maxPoints": 3,
       "explanation": "The convolution theorem turns time-domain convolution into frequency-domain multiplication. Magnitudes multiply and phases add, which makes the frequency response a direct description of how an LTI system modifies each frequency.",
-      "source": "EE3731C Classical Signal 2, convolution and DTFT property"
+      "source": "EE3731C Yeo_ClassicalSignal2_condensed.pdf, slides 15-16"
     },
     {
       "id": "ee3731c-dtft-real-symmetry",
-      "revision": 1,
+      "revision": 2,
       "type": "multiple",
       "prompt": "If $x[n]$ is real-valued, which symmetries hold for its DTFT?",
       "options": [
-        { "id": "conjugate", "content": "$X(e^{-j omega})$ is the complex conjugate of $X(e^{j omega})$.", "points": 1 },
-        { "id": "magnitude-even", "content": "The magnitude spectrum is even in frequency.", "points": 1 },
-        { "id": "phase-odd", "content": "The phase is odd where a consistent phase representation is defined.", "points": 1 },
-        { "id": "spectrum-real", "content": "The DTFT must be purely real at every frequency.", "points": -0.5 }
+        {
+          "id": "magnitude-even",
+          "content": "The magnitude spectrum is even in frequency.",
+          "points": 1
+        },
+        {
+          "id": "phase-odd",
+          "content": "The phase is odd where a consistent phase representation is defined.",
+          "points": 1
+        },
+        {
+          "id": "spectrum-real",
+          "content": "The DTFT must be purely real at every frequency.",
+          "points": -0.5
+        },
+        {
+          "id": "conjugate",
+          "content": "$X(e^{-j \\omega})$ is the complex conjugate of $X(e^{j \\omega})$.",
+          "points": 1
+        }
       ],
       "maxPoints": 3,
       "explanation": "A real sequence has conjugate-symmetric spectrum. This makes magnitude even and phase odd up to phase wrapping and zeros. The spectrum can still be complex away from special frequencies.",
-      "source": "EE3731C Classical Signal 2, DTFT symmetry properties"
+      "source": "EE3731C Yeo_ClassicalSignal2_condensed.pdf, slides 12-13"
     },
     {
-      "id": "ee3731c-dtft-geometric-sequence",
+      "id": "ee3731c-dtft-rational-output",
       "revision": 1,
       "type": "single",
-      "prompt": "For $x[n]=a^n u[n]$ with $|a|<1$, which expression is its DTFT?",
+      "prompt": "A zero-state LTI system has $h[n]=3(1/2)^nu[n]$ and input $x[n]=(-1/4)^nu[n]$. Which expression is its output?",
       "options": [
-        { "id": "geometric", "content": "$1/(1-ae^{-j omega})$", "points": 1 },
-        { "id": "finite", "content": "$1-ae^{-j omega}$", "points": 0 },
-        { "id": "inverse", "content": "$1/(1+ae^{-j omega})$", "points": 0 },
-        { "id": "delta", "content": "$delta[omega-a]$", "points": 0 }
+        {
+          "id": "pointwise",
+          "content": "$y[n]=3(-1/8)^nu[n]$",
+          "points": 0
+        },
+        {
+          "id": "wrong-sign",
+          "content": "$y[n]=[2(1/2)^n-(-1/4)^n]u[n]$",
+          "points": 0
+        },
+        {
+          "id": "missing-weight",
+          "content": "$y[n]=[(1/2)^n+(-1/4)^n]u[n]$",
+          "points": 0
+        },
+        {
+          "id": "partial-fractions",
+          "content": "$y[n]=[2(1/2)^n+(-1/4)^n]u[n]$",
+          "points": 1
+        }
       ],
       "maxPoints": 1,
-      "explanation": "The transform is the convergent geometric series with ratio $ae^{-j omega}$: its sum is $1/(1-ae^{-j omega})$ when $|a|<1$.",
-      "source": "EE3731C Classical Signal 2, DTFT examples"
+      "explanation": "Let $z=e^{-j\\omega}$. Then $Y=3/[(1-z/2)(1+z/4)]=2/(1-z/2)+1/(1+z/4)$. Inverting gives the stated output. Independently, y[0]=3 and y[1]=3(-1/4)+3/2=3/4, which reject the distractors. Pointwise multiplication is not LTI convolution.",
+      "source": "EE3731C Yeo_ClassicalSignal2_condensed.pdf, slides 6-9 and 15-16; EE3731C ClassicalSignal2Questions.pdf, page 1, Q1"
     },
     {
       "id": "ee3731c-dtft-inverse-transform",
-      "revision": 1,
+      "revision": 2,
       "type": "boolean",
-      "prompt": "Because the DTFT is $2pi$-periodic, the inverse DTFT may integrate over any continuous frequency interval of length $2pi$.",
+      "prompt": "Because the DTFT is $2\\pi$-periodic, its inverse may use the same $1/(2\\pi)$ normalization but integrate over any interval of length $\\pi$ instead of $2\\pi$.",
       "options": [
-        { "id": "true", "content": "True", "points": 1 },
-        { "id": "false", "content": "False", "points": 0 }
+        {
+          "id": "true",
+          "content": "True",
+          "points": 0
+        },
+        {
+          "id": "false",
+          "content": "False",
+          "points": 1
+        }
       ],
       "maxPoints": 1,
-      "explanation": "One complete period contains all distinct DTFT information. The inverse integral commonly uses $[-pi,pi]$, but any interval of length $2pi$ gives the same sequence.",
-      "source": "EE3731C Classical Signal 2, inverse DTFT"
+      "explanation": "False. The inverse formula uses a complete $2\\pi$ interval: $x[n]=(1/(2\\pi))\\int_{a}^{a+2\\pi}X(e^{j\\omega})e^{j\\omega n}\\,d\\omega$. A half-period with the same normalization does not generally recover the sequence. For example, X=1 would give x[0]=1/2 rather than 1.",
+      "source": "EE3731C Yeo_ClassicalSignal2_condensed.pdf, slides 53-54"
     },
     {
       "id": "ee3731c-dtft-exponential-eigenfunction",
-      "revision": 1,
+      "revision": 2,
       "type": "multiple",
-      "prompt": "A complex exponential $x[n]=e^{j omega0 n}$ is applied to an LTI system with frequency response $H(e^{j omega})$. What follows?",
+      "prompt": "A two-sided complex exponential $x[n]=e^{j\\omega_0n}$ is applied to an LTI system whose frequency response exists at $\\omega_0$. Assume zero-state response. What follows?",
       "options": [
-        { "id": "same-frequency", "content": "The output has the same frequency $omega0$.", "points": 1 },
-        { "id": "scaled", "content": "The complex amplitude is multiplied by $H(e^{j omega0})$.", "points": 1 },
-        { "id": "eigenfunction", "content": "Complex exponentials are eigenfunctions of LTI systems.", "points": 1 },
-        { "id": "new-frequencies", "content": "A linear time-invariant system must create unrelated new frequencies from this input.", "points": -0.5 }
+        {
+          "id": "same-frequency",
+          "content": "If $H(e^{j\\omega_0})\\ne0$, the nonzero output has the same frequency $\\omega_0$ (modulo $2\\pi$).",
+          "points": 1
+        },
+        {
+          "id": "eigenfunction",
+          "content": "Complex exponentials are eigenfunctions of LTI systems.",
+          "points": 1
+        },
+        {
+          "id": "new-frequencies",
+          "content": "A linear time-invariant system must create unrelated new frequencies from this input.",
+          "points": -0.5
+        },
+        {
+          "id": "scaled",
+          "content": "The complex amplitude is multiplied by $H(e^{j \\omega_0})$.",
+          "points": 1
+        }
       ],
       "maxPoints": 3,
-      "explanation": "The output is $H(e^{j omega0})e^{j omega0 n}$. The system changes magnitude and phase but preserves the exponential's frequency, which is precisely the eigenfunction property.",
-      "source": "EE3731C Classical Signal 2, frequency response interpretation"
+      "explanation": "The output is $y[n]=H(e^{j\\omega_0})e^{j\\omega_0n}$. A nonzero response scales and phase-shifts the exponential without changing its frequency. If $H(e^{j\\omega_0})=0$, the output is the zero sequence; it is then misleading to assign it a unique nonzero oscillation frequency. Zero is an allowed eigenvalue.",
+      "source": "EE3731C Yeo_ClassicalSignal2_condensed.pdf, slides 15-16"
     },
     {
       "id": "ee3731c-dtft-stable-frequency-response",
-      "revision": 1,
+      "revision": 2,
       "type": "multiple",
       "prompt": "An LTI system has an absolutely summable impulse response. Which statements follow?",
       "options": [
-        { "id": "bibo", "content": "The system is BIBO stable.", "points": 1 },
-        { "id": "dtft-exists", "content": "Its frequency response exists as a bounded continuous function.", "points": 1 },
-        { "id": "bounded", "content": "$|H(e^{j omega})|$ is bounded by the absolute sum of $h[n]$.", "points": 1 },
-        { "id": "causal", "content": "Absolute summability alone proves the system is causal.", "points": -0.5 }
+        {
+          "id": "bibo",
+          "content": "The system is BIBO stable.",
+          "points": 1
+        },
+        {
+          "id": "causal",
+          "content": "Absolute summability alone proves the system is causal.",
+          "points": -0.5
+        },
+        {
+          "id": "bounded",
+          "content": "$|H(e^{j \\omega})|$ is bounded by the absolute sum of $h[n]$.",
+          "points": 1
+        },
+        {
+          "id": "dtft-exists",
+          "content": "Its frequency response exists as a bounded continuous function.",
+          "points": 1
+        }
       ],
       "maxPoints": 3,
       "explanation": "Absolute summability is the LTI BIBO-stability condition and guarantees convergence and boundedness of the DTFT. Causality is separate and requires $h[n]=0$ for negative $n$.",
-      "source": "EE3731C Classical Signal 2 Tutorial, stability and DTFT questions"
+      "source": "EE3731C Yeo_ClassicalSignal2_condensed.pdf, slides 31-34; EE3731C ClassicalSignal2Questions.pdf, page 1, Q4"
     },
     {
-      "id": "ee3731c-dtft-moving-average",
+      "id": "ee3731c-dtft-four-tap-average",
       "revision": 1,
       "type": "multiple",
-      "prompt": "What qualitative frequency response is expected from a finite moving-average filter with equal positive coefficients?",
+      "prompt": "A causal moving-average filter has $h[n]=1/4$ for n=0,1,2,3 and zero elsewhere. Which statements are correct?",
       "options": [
-        { "id": "dc-pass", "content": "It passes or preserves the DC component after suitable normalization.", "points": 1 },
-        { "id": "smooth", "content": "It smooths rapid sample-to-sample variation.", "points": 1 },
-        { "id": "lowpass", "content": "Its main behaviour is low-pass.", "points": 1 },
-        { "id": "allpass", "content": "Its magnitude is exactly one at every frequency.", "points": -0.5 }
+        {
+          "id": "dc-one",
+          "content": "$H(e^{j0})=1$.",
+          "points": 1
+        },
+        {
+          "id": "zero-quarter",
+          "content": "$H(e^{j\\pi/2})=0$.",
+          "points": 1
+        },
+        {
+          "id": "delay-one-half",
+          "content": "Its generalized linear-phase delay is 1.5 samples.",
+          "points": 1
+        },
+        {
+          "id": "all-pass",
+          "content": "It has unit magnitude at every frequency.",
+          "points": -0.5
+        },
+        {
+          "id": "zero-dc",
+          "content": "Averaging eliminates a constant input.",
+          "points": -0.5
+        },
+        {
+          "id": "delay-four",
+          "content": "Its group delay is four samples everywhere its response is nonzero.",
+          "points": -0.5
+        }
       ],
       "maxPoints": 3,
-      "explanation": "Averaging reinforces slowly varying components and suppresses many high-frequency variations. Normalized equal coefficients sum to one, giving unit gain at DC, but the response is not flat across all frequencies.",
-      "source": "EE3731C Classical Signal 2 Tutorial, moving-average filter"
+      "explanation": "The response is $H=(1+e^{-j\\omega}+e^{-j2\\omega}+e^{-j3\\omega})/4=e^{-j3\\omega/2}\\sin(2\\omega)/(4\\sin(\\omega/2))$, using limits at removable singularities. The four coefficients sum to one, while at π/2 their phasors cancel. Symmetry about 1.5 gives that delay away from response zeros; the filter is not all-pass.",
+      "source": "EE3731C Yeo_ClassicalSignal2_condensed.pdf, slides 20-21; EE3731C ClassicalSignal2Questions.pdf, page 1, Q2"
     },
     {
       "id": "ee3731c-dtft-linear-phase-delay",
-      "revision": 1,
+      "revision": 2,
       "type": "multiple",
       "prompt": "Why is a linear phase response often desirable in a filter passband?",
       "options": [
-        { "id": "common-delay", "content": "Frequency components experience a common time delay.", "points": 1 },
-        { "id": "shape", "content": "The waveform shape is preserved when magnitude distortion is also controlled.", "points": 1 },
-        { "id": "phase-form", "content": "The phase has the form $-omega D$ plus a constant over the relevant band.", "points": 1 },
-        { "id": "zero-delay", "content": "Linear phase always means zero delay.", "points": -0.5 }
+        {
+          "id": "zero-delay",
+          "content": "Linear phase always means zero delay.",
+          "points": -0.5
+        },
+        {
+          "id": "common-delay",
+          "content": "Frequency components experience a common time delay.",
+          "points": 1
+        },
+        {
+          "id": "shape",
+          "content": "The waveform shape is preserved when magnitude distortion is also controlled.",
+          "points": 1
+        },
+        {
+          "id": "phase-form",
+          "content": "The phase has the form $-\\omega D$ plus a constant over the relevant band.",
+          "points": 1
+        }
       ],
       "maxPoints": 3,
       "explanation": "A phase proportional to frequency corresponds to a time shift $D$. Equal delay across frequency avoids phase distortion, though the delay need not be zero and the magnitude response can still alter amplitudes.",
-      "source": "EE3731C Classical Signal 3, phase distortion and delay, slides 7-9"
+      "source": "EE3731C Yeo_ClassicalSignal3_condensed.pdf, slides 7-9"
     }
   ]
 }
